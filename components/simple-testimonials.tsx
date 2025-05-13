@@ -1,50 +1,28 @@
 import React from 'react'
-import { Card, CardContent } from './ui/card'
-
-type Testimonial = {
-  name: string;
-  role: string;
-  quote: string;
-}
 
 export default function SimpleTestimonials() {
-  const testimonials: Testimonial[] = [
-    {
-      name: "James T.",
-      role: "Finance Executive",
-      quote: "After following Marley's protocol, my energy levels are consistently high throughout the day. I've ditched coffee and still outperform my colleagues."
-    },
-    {
-      name: "Mike R.",
-      role: "Tech Entrepreneur",
-      quote: "The Limitless Protocol completely changed my relationship with energy. I'm focused, productive, and feel better than I have in years."
-    },
-    {
-      name: "Daniel H.",
-      role: "Sales Director",
-      quote: "I was skeptical at first, but the results speak for themselves. No more afternoon crashes, no more relying on stimulants. This is life-changing."
-    }
-  ];
-
   return (
-    <section className="py-16 bg-white">
-      <div className="container px-4 mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">What High Performers Are Saying</h2>
+    <>
+      <h3 className="text-2xl font-bold mb-6 text-center">What high performers are saying:</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-none shadow-lg">
-              <CardContent className="p-6">
-                <p className="text-lg mb-4">"{testimonial.quote}"</p>
-                <div>
-                  <p className="font-semibold">{testimonial.name}</p>
-                  <p className="text-sm text-zinc-500">{testimonial.role}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-zinc-900/70 p-4 rounded-lg">
+          <p className="text-sm mb-3">
+            "Down 22lbs. Haven't touched caffeine in 6 weeks. Closing my biggest deals at 8pm."
+          </p>
+          <p className="text-xs text-zinc-400">- Investment Banker, NYC</p>
+        </div>
+
+        <div className="bg-zinc-900/70 p-4 rounded-lg">
+          <p className="text-sm mb-3">"Energy at 6pm matches my old 9am. Wife thinks I'm 25 again."</p>
+          <p className="text-xs text-zinc-400">- Tech CEO, 42</p>
+        </div>
+
+        <div className="bg-zinc-900/70 p-4 rounded-lg">
+          <p className="text-sm mb-3">"Saved $400/month on supplements. Feel better than I did in college."</p>
+          <p className="text-xs text-zinc-400">- Sales Director, Chicago</p>
         </div>
       </div>
-    </section>
+    </>
   );
 }
