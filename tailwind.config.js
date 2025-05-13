@@ -16,6 +16,42 @@ module.exports = {
       },
     },
     extend: {
+      letterSpacing: {
+        tightest: '-0.075em',
+        tightMid: '-0.0375em',
+        normalTight: '-0.0125em',
+        wideNarrow: '0.0125em',
+        wideMid: '0.0375em',
+        widerMid: '0.075em',
+        spacedUltra: '0.15em',
+        spacedMax: '0.25em',
+      },
+      fontSize: {
+        'xs': '0.75rem',    // 12px
+        'sm': '0.875rem',   // 14px
+        'base': '1rem',     // 16px
+        'lg': '1.125rem',   // 18px
+        'xl': '1.25rem',    // 20px
+        '2xl': '1.5rem',    // 24px
+        '3xl': '1.875rem',  // 30px
+        '4xl': '2.25rem',   // 36px
+        '5xl': '3rem',      // 48px
+        '6xl': '4rem',      // 64px
+
+        // Custom ranges
+        '0.7xl': '1.0625rem', // Between 'sm' and 'base'
+        '0.8xl': '1.125rem',  // Between 'base' and 'lg'
+        '1.3xl': '1.375rem',  // Between 'xl' and '2xl'
+        '2.5xl': '2rem',      // Between '2xl' and '3xl'
+        '3.2xl': '2.125rem',  // Between '3xl' and '4xl'
+        '4.5xl': '2.75rem',   // Between '4xl' and '5xl'
+        '5.5xl': '3.25rem',   // Between '5xl' and '6xl'
+
+        // Additional tight range increments
+        '0.9xl': '1.0625rem', // Between 'base' and 'lg'
+        '1.1xl': '1.125rem',  // Slightly between 'lg' and 'xl'
+        '1.5xl': '1.625rem',  // Between '2xl' and '3xl'
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

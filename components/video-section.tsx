@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
-import { getVideoType, formatYouTubeUrl } from '@/lib/video-utils';
+import { formatYouTubeUrl, getVideoType } from '@/lib/video-utils';
+import { Pause, Play, Volume2, VolumeX } from "lucide-react";
+import React from 'react';
 
 export default function VideoSection() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -38,17 +38,22 @@ export default function VideoSection() {
   };
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-8">
-          <p className="text-sm text-red-700 font-medium mb-2">STEP 1: WATCH THE VIDEO</p>
-          <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3rem] font-bold max-w-4xl mx-auto">
-            Discover How To Triple Your Energy In Just 21 Days Without Caffeine, Supplements, Or Stimulants
-          </h1>
-        </div>
+    <div className="w-full py-6 mx-auto">
+      {/* Step 1 */}
+      <div className="mt-16 mb-6 text-center">
+        <p className="text-lg text-red-500">
+          <span className="font-bold">Step 1:</span> <span className="font-normal">Watch The Video</span>
+        </p>
+      </div>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl">
+      {/* Main Headline */}
+      <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto" style={{ fontSize: "4.5rem", lineHeight: "1" }}>
+        How I Got Jacked With All-Day Energy Using No Supplements, Still Eating Steak Dinners And Training 2 Days A Week
+      </h1>
+
+      <div className="w-full max-w-4xl px-4 mx-auto lg:max-w-3xl">
+        <div className="relative w-full mb-10 lg:mb-6">
+          <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative lg:max-h-[480px]">
             {isPlaying ? (
               // If video is playing, show the appropriate player based on video type
               videoType === 'youtube' ? (
@@ -65,7 +70,7 @@ export default function VideoSection() {
                   src={videoUrl}
                   controls
                   autoPlay
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 object-cover w-full h-full"
                 ></video>
               )
             ) : (
@@ -74,16 +79,16 @@ export default function VideoSection() {
                 <div className="relative w-full h-full">
                   <img
                     src={thumbnailUrl}
-                    alt="Video thumbnail"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    alt=""
+                    className="absolute inset-0 object-cover w-full h-full"
                   />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Button
                     onClick={handlePlay}
-                    className="bg-red-700 hover:bg-red-800 text-white rounded-full w-16 h-16 flex items-center justify-center transition-transform transform hover:scale-110"
+                    className="flex items-center justify-center w-20 h-20 text-white transition-transform transform bg-red-600 rounded-full hover:bg-red-700 hover:scale-110"
                   >
-                    <Play className="ml-1" size={24} />
+                    <Play className="ml-1" size={28} />
                   </Button>
                 </div>
               </>
@@ -91,11 +96,11 @@ export default function VideoSection() {
 
             {/* Video controls - only show when playing HTML5 video */}
             {isPlaying && videoType !== 'youtube' && (
-              <div className="absolute bottom-4 left-4 flex space-x-2">
+              <div className="absolute flex space-x-2 bottom-4 left-4">
                 <Button
                   variant="outline"
                   size="icon"
-                  className="bg-black/50 border-0 hover:bg-black/70"
+                  className="border-0 bg-black/50 hover:bg-black/70"
                   onClick={togglePlay}
                 >
                   {isPlaying ? <Pause size={20} /> : <Play size={20} />}
@@ -103,7 +108,7 @@ export default function VideoSection() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="bg-black/50 border-0 hover:bg-black/70"
+                  className="border-0 bg-black/50 hover:bg-black/70"
                   onClick={toggleMute}
                 >
                   {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
@@ -113,6 +118,6 @@ export default function VideoSection() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

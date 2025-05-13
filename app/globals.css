@@ -33,22 +33,41 @@ body {
   font-family: "Inter", sans-serif;
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 @layer base {
   h1 {
     font-family: "Inter", sans-serif;
     letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  /* Remove default margins that might cause gaps */
+  body, section, div, p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  section {
+    display: block;
   }
 }
 
 @layer components {
   .heading-1 {
-    line-height: 1;
+    line-height: 1.1;
   }
 
   .slanted-divider {
     clip-path: polygon(0 100%, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  /* Ensure sections connect without gaps */
+  main > section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 }
 

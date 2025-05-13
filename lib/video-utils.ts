@@ -41,7 +41,7 @@ export function formatYouTubeUrl(url: string): string {
 
   if (!videoId) return url;
 
-  return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 }
 
 /**

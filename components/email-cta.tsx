@@ -4,7 +4,6 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 // Define the schema manually instead of using zod
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -79,7 +78,7 @@ export default function EmailCTA() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full">
       {submitResult && (
         <div
           className={`mb-4 p-3 rounded w-full ${
@@ -91,37 +90,35 @@ export default function EmailCTA() {
       )}
 
       {/* Email Form */}
-      <form className="w-full space-y-4" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <Input
-            {...register('email', {
-              required: "Email is required",
-              pattern: {
-                value: emailRegex,
-                message: "Please enter a valid email address"
-              }
-            })}
-            type="email"
-            placeholder="Your email address"
-            className={`w-full p-4 bg-zinc-800 border border-zinc-700 rounded text-white ${errors.email ? 'border-red-500' : ''}`}
-            required
-          />
-          {errors.email && (
-            <p className="mt-1 text-sm text-red-400">{errors.email.message as string}</p>
-          )}
-        </div>
+      <form className="space-y-5 w-full" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          {...register('email', {
+            required: "Email is required",
+            pattern: {
+              value: emailRegex,
+              message: "Please enter a valid email address"
+            }
+          })}
+          type="email"
+          placeholder="Your Email Address..."
+          className={`w-full p-4 bg-zinc-800 border border-zinc-700 rounded text-white ${errors.email ? 'border-red-500' : ''} h-14`}
+          required
+        />
+        {errors.email && (
+          <p className="mt-1 text-sm text-red-400">{errors.email.message as string}</p>
+        )}
 
         <Button
           type="submit"
-          className="w-full bg-red-700 hover:bg-red-800 text-white p-4 rounded font-bold text-lg"
+          className="w-full bg-red-700 hover:bg-red-800 text-white p-4 rounded font-bold text-lg mb-8"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Processing...' : 'Send me it over'}
+          {isSubmitting ? 'Processing...' : 'START MY 3-WEEK TRANSFORMATION'}
         </Button>
       </form>
 
       {/* Secondary CTA Button */}
-      <div className="mt-5 w-full">
+      <div className="mt-5">
         <Button
           variant="outline"
           className="w-full bg-transparent border border-red-700 hover:bg-red-900/20 text-white p-4 rounded font-bold text-lg"

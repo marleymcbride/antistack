@@ -4,7 +4,6 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useForm } from 'react-hook-form';
-import { ArrowRight } from "lucide-react";
 
 // Email pattern validation
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -79,29 +78,38 @@ export default function EmailSignup() {
   };
 
   return (
-    <div className="w-full mb-16">
-      {/* Key Benefits */}
-      <div className="bg-zinc-900/50 p-6 rounded-lg mb-8 w-full">
+    <>
+      {/* Benefits Box */}
+      <div className="max-w-2xl p-6 mx-auto mt-0 mb-6 text-left rounded-lg bg-zinc-800/70">
         <ul className="space-y-4">
           <li className="flex items-start">
-            <span className="text-red-500 mr-2 text-xl">•</span>
+            <span className="flex-shrink-0 mt-1 mr-3 text-left text-red-500">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="16" fill="currentColor" />
+              </svg>
+            </span>
             <span>
-              Free 30-day email course revealing the exact Limitless Systems I used to triple my energy levels in just
-              21 days
+              A 3-step morning flow to wake up feeling amazing without caffeine
             </span>
           </li>
           <li className="flex items-start">
-            <span className="text-red-500 mr-2 text-xl">•</span>
+            <span className="flex-shrink-0 mt-1 mr-3 text-left text-red-500">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="16" fill="currentColor" />
+              </svg>
+            </span>
             <span>
-              Learn how to shift from "Drag Energy" to "Glide Energy" without caffeine, alcohol, or spending 5 days a
-              week in the gym
+              The minimal training method that builds your powerful physique in 60% less time
             </span>
           </li>
           <li className="flex items-start">
-            <span className="text-red-500 mr-2 text-xl">•</span>
+            <span className="flex-shrink-0 mt-1 mr-3 text-left text-red-500">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="16" fill="currentColor" />
+              </svg>
+            </span>
             <span>
-              Discover the Morning Fuel System, Minimalist Training, and Limitless Flow that transformed my life and
-              body
+              A hormone reset system that triples your focus and energy without sunning your balls, biohacks or 'T boosters'.
             </span>
           </li>
         </ul>
@@ -117,9 +125,14 @@ export default function EmailSignup() {
         </div>
       )}
 
+      {/* Quick Note on getting the email */}
+      <p className="mt-10 mb-10 text-center text-zinc-400">
+        It's completely free, just give me your best email address and I'll send it your way.
+      </p>
+
       {/* Email Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="mb-8">
-        <div className="space-y-4">
+      <div className="max-w-md mx-auto mb-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <Input
             {...register('email', {
               required: "Email is required",
@@ -129,8 +142,8 @@ export default function EmailSignup() {
               }
             })}
             type="email"
-            placeholder="Enter your email address"
-            className={`bg-zinc-800 border-zinc-700 text-white h-14 ${errors.email ? 'border-red-500' : ''}`}
+            placeholder="Your Email Address..."
+            className={`w-full p-5 h-16 text-base bg-zinc-800 border border-zinc-700 rounded text-white ${errors.email ? 'border-red-500' : ''}`}
             required
           />
           {errors.email && (
@@ -138,27 +151,28 @@ export default function EmailSignup() {
           )}
           <Button
             type="submit"
-            className="bg-red-700 hover:bg-red-800 text-white h-14 px-8 w-full whitespace-nowrap flex items-center justify-center"
+            className="w-full p-5 h-16 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Processing...' : 'GET THE FREE COURSE'} <ArrowRight className="ml-2 h-4 w-4" />
+            {isSubmitting ? 'Processing...' : 'Send me it over'}
+          </Button>
+        </form>
+
+        {/* Join Limitless - No separate headline, just the button */}
+        <div className="mt-5">
+          <Button
+            variant="outline"
+            className="w-full p-5 h-16 text-lg font-bold text-white bg-transparent border border-red-700 rounded hover:bg-red-900/20"
+          >
+            JOIN LIMITLESS
           </Button>
         </div>
-      </form>
-
-      {/* Secondary CTA Button */}
-      <Button
-        variant="outline"
-        className="border-red-700 text-white hover:bg-red-900/20 text-lg py-6 px-8 rounded w-full"
-      >
-        JOIN LIMITLESS
-      </Button>
+      </div>
 
       {/* Personal Note */}
-      <p className="text-center mt-8 text-zinc-400">
-        I personally write every email. No bots, no VA. Just straight answers and direction to help you transform your
-        energy and life.
+      <p className="mt-6 text-center text-zinc-400">
+        I reply to every email personally. No bots or VA. Just yours truly.
       </p>
-    </div>
+    </>
   );
 }
