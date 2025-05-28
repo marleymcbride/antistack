@@ -6,9 +6,6 @@ const nextConfig = {
     domains: ['placeholder.com'],
     formats: ['image/avif', 'image/webp'],
   },
-  experimental: {
-    optimizeFonts: true,
-  },
 }
 
 module.exports = nextConfig

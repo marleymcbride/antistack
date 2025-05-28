@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* normal placeholder */
+  input::placeholder {
+    @apply text-white opacity-100;
+  }
+
+  /* chrome autofill text color */
+  input:-webkit-autofill,
+  input:-webkit-autofill::placeholder {
+    -webkit-text-fill-color: #fff !important;
+    box-shadow: 0 0 0px 1000px #27272a inset !important; /* match your bg */
+    @apply opacity-100;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill::placeholder {
+  box-shadow: 0 0 0px 1000px #27272a inset !important; /* Match your bg color */
+  -webkit-text-fill-color: #ffffff !important; /* Text color */
+  color: #ffffff !important;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -73,6 +95,5 @@ body {
 
 @layer utilities {
   .text-balance {
-    text-wrap: balance;
   }
 }

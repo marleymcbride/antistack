@@ -2,26 +2,26 @@ import React from 'react'
 
 export default function TestimonialSection() {
   return (
-    <section className="w-full bg-white text-black">
-      <div className="container max-w-5xl mx-auto py-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-10">What Guys Like You Are Saying...</h2>
+    <section className="w-full text-black bg-white">
+      <div className="container max-w-5xl px-4 py-12 mx-auto">
+        <h2 className="mb-10 text-3xl font-bold text-center">What Guys Like You Are Saying...</h2>
 
         {/* WhatsApp Screenshots - More authentic, messy layout with 6 testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div className="grid max-w-5xl grid-cols-1 gap-4 mx-auto md:grid-cols-2 md:gap-6">
           {/* Testimonial 1 */}
           <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 shadow-sm transform rotate-[-0.5deg]">
-            <div className="flex items-center justify-between p-2 border-b border-gray-200 mb-2">
+            <div className="flex items-center justify-between p-2 mb-2 border-b border-gray-200">
               <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                <div className="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
                 <p className="font-semibold">Client</p>
               </div>
               <div className="flex space-x-2">
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
               </div>
             </div>
 
-            <div className="space-y-2 p-2">
+            <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
                   I have noticed and felt a significant step change in my strength, mental health and overall
@@ -34,18 +34,18 @@ export default function TestimonialSection() {
 
           {/* Testimonial 2 */}
           <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 shadow-sm transform rotate-[0.3deg]">
-            <div className="flex items-center justify-between p-2 border-b border-gray-200 mb-2">
+            <div className="flex items-center justify-between p-2 mb-2 border-b border-gray-200">
               <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                <div className="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
                 <p className="font-semibold">David N.</p>
               </div>
               <div className="flex space-x-2">
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
               </div>
             </div>
 
-            <div className="space-y-2 p-2">
+            <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
                   I'd hit snooze 6 times every morning. Now I'm up before my alarm, no caffeine needed.
@@ -57,9 +57,9 @@ export default function TestimonialSection() {
 
           {/* Joke Testimonial - NEW */}
           <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 shadow-sm transform rotate-[0.5deg] md:col-span-2">
-            <div className="flex items-center justify-between p-2 border-b border-gray-200 mb-2">
+            <div className="flex items-center justify-between p-2 mb-2 border-b border-gray-200">
               <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-gray-300 mr-2 flex items-center justify-center">
+                <div className="flex items-center justify-center w-8 h-8 mr-2 bg-gray-300 rounded-full">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="1.5" />
                     <path
@@ -81,12 +81,12 @@ export default function TestimonialSection() {
                 <p className="font-semibold">Definitely the real Beff Jezos</p>
               </div>
               <div className="flex space-x-2">
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
               </div>
             </div>
 
-            <div className="space-y-2 p-2">
+            <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
                   "Wow this is the greatest thing I've ever seen. This system single-handedly made me a billionaire and my wife keeps checking if
@@ -105,18 +105,18 @@ export default function TestimonialSection() {
 
           {/* Testimonial 3 */}
           <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 shadow-sm transform rotate-[0.7deg]">
-            <div className="flex items-center justify-between p-2 border-b border-gray-200 mb-2">
+            <div className="flex items-center justify-between p-2 mb-2 border-b border-gray-200">
               <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                <div className="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
                 <p className="font-semibold">Michael R.</p>
               </div>
               <div className="flex space-x-2">
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
               </div>
             </div>
 
-            <div className="space-y-2 p-2">
+            <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
                   After 8 weeks, I've lost 22 pounds, doubled my output, and haven't touched caffeine in 37 days.
@@ -128,18 +128,18 @@ export default function TestimonialSection() {
 
           {/* Testimonial 4 */}
           <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 shadow-sm transform rotate-[-0.3deg]">
-            <div className="flex items-center justify-between p-2 border-b border-gray-200 mb-2">
+            <div className="flex items-center justify-between p-2 mb-2 border-b border-gray-200">
               <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                <div className="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
                 <p className="font-semibold">Client</p>
               </div>
               <div className="flex space-x-2">
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
               </div>
             </div>
 
-            <div className="space-y-2 p-2">
+            <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
                   Right now I'm in the best phase of my life thanks to the foundations we set at the very beginning

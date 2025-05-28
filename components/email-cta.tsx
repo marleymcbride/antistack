@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { useForm } from 'react-hook-form';
 
 // Define the schema manually instead of using zod
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -78,10 +78,10 @@ export default function EmailCTA() {
   };
 
   return (
-    <div className="w-full">
+    <div className="p-4 mt-5 mb-8 w-90">
       {submitResult && (
         <div
-          className={`mb-4 p-3 rounded w-full ${
+          className={`mb-4 p-2 rounded w-full ${
             submitResult.success ? 'bg-green-700/20 text-green-100' : 'bg-red-700/20 text-red-100'
           }`}
         >
@@ -90,7 +90,7 @@ export default function EmailCTA() {
       )}
 
       {/* Email Form */}
-      <form className="space-y-5 w-full" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-full space-y-5" onSubmit={handleSubmit(onSubmit)}>
         <Input
           {...register('email', {
             required: "Email is required",
@@ -101,7 +101,7 @@ export default function EmailCTA() {
           })}
           type="email"
           placeholder="Your Email Address..."
-          className={`w-full p-4 bg-zinc-800 border border-zinc-700 rounded text-white ${errors.email ? 'border-red-500' : ''} h-14`}
+          className={`w-full p-4 bg-zinc-800 border border-zinc-700 rounded text-white placeholder-white placeholder-opacity-100 ${errors.email ? 'border-red-500' : ''} h-14`}
           required
         />
         {errors.email && (
@@ -110,7 +110,7 @@ export default function EmailCTA() {
 
         <Button
           type="submit"
-          className="w-full bg-red-700 hover:bg-red-800 text-white p-4 rounded font-bold text-lg mb-8"
+          className="w-full p-4 mb-8 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800 h-15"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Processing...' : 'START MY 3-WEEK TRANSFORMATION'}
@@ -121,7 +121,7 @@ export default function EmailCTA() {
       <div className="mt-5">
         <Button
           variant="outline"
-          className="w-full bg-transparent border border-red-700 hover:bg-red-900/20 text-white p-4 rounded font-bold text-lg"
+          className="w-full py-4 text-lg font-bold text-white bg-transparent border border-red-700 rounded hover:bg-red-900/20 h-15"
         >
           JOIN LIMITLESS
         </Button>

@@ -38,20 +38,44 @@ export default function VideoSection() {
   };
 
   return (
-    <div className="w-full py-6 mx-auto">
+    <div className="w-full pt-4 pb-8 mx-auto">
       {/* Step 1 */}
-      <div className="mt-16 mb-6 text-center">
+      <div className="mt-10 mb-6 text-center">
         <p className="text-lg text-red-500">
           <span className="font-bold">Step 1:</span> <span className="font-normal">Watch The Video</span>
         </p>
       </div>
 
       {/* Main Headline */}
-      <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto" style={{ fontSize: "4.5rem", lineHeight: "1" }}>
+      {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
         How I Got Jacked With All-Day Energy Using No Supplements, Still Eating Steak Dinners And Training 2 Days A Week
-      </h1>
+      </h1> */}
 
-      <div className="w-full max-w-4xl px-4 mx-auto lg:max-w-3xl">
+      <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[70%] mx-auto">
+      How I tripled my energy without coffee, crazy supplements or spending my life in the gym
+      </h1>
+      <h2 className="text-1xl md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-sm/7 text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[60%] mx-auto">
+      Watch the video to steal the full “Anti Stack” method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
+      </h2>
+      
+      {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
+        How Quitting Pre-Workout Gave Me More Energy Than 5 Espressos Ever Did
+      </h1> */}
+      
+      {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
+        Your Supplements Are Making You Tired
+      </h1> */}
+      
+      {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
+        How I Got Jacked With All-Day Energy Using No Supplements, Still Eating Steak Dinners And Training 2 Days A Week
+      </h1> */}
+      
+      {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
+        How I Got Jacked With All-Day Energy Using No Supplements, Still Eating Steak Dinners And Training 2 Days A Week
+      </h1> */}
+      
+
+      <div className="w-full max-w-4xl px-4 mx-auto lg:max-w-2xl">
         <div className="relative w-full mb-10 lg:mb-6">
           <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative lg:max-h-[480px]">
             {isPlaying ? (

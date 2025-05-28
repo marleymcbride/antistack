@@ -31,8 +31,8 @@ export default function Home() {
             <h2 className="mb-4 text-5xl font-bold text-center">3X Your Energy in 3 Weeks</h2>
 
             {/* Sub-eyebrow */}
-            <p className="mb-8 text-base text-3.2xl md:text-5xl lg:text-6xl xl:text-lg text-center">
-              Join 742+ high-earning men using this 21-day system getting:
+            <p className="mb-8 text-3.2xl md:text-5xl lg:text-6xl xl:text-lg text-center">
+              Join 742+ high-performers using this 21-day system getting:
             </p>
 
             <EmailSignup />
@@ -41,8 +41,8 @@ export default function Home() {
       </div>
 
       {/* What high performers are saying - LIGHTER GRAY SECTION */}
-      <section className="w-full bg-zinc-800 text-white pb-8 pt-14">
-        <div className="max-w-2xl mx-auto px-4">
+      <section className="w-full pb-8 text-white bg-zinc-800 pt-14">
+        <div className="max-w-2xl px-4 mx-auto">
           <SimpleTestimonials />
         </div>
       </section>
@@ -92,9 +92,9 @@ export default function Home() {
       </section>
 
       {/* Cost question and email form */}
-      <section className="w-full text-white bg-zinc-900 py-16">
-        <div className="max-w-xl mx-auto px-4 text-center">
-          <h3 className="text-4xl font-bold mb-12">
+      <section className="w-full text-white py-14 bg-zinc-900 ">
+        <div className="max-w-xl px-4 mx-auto mb-10 text-center">
+          <h3 className="mt-2 mb-8 text-2xl font-bold leading-snug 0">
             How much is waking up with no energy every morning costing you?
           </h3>
 

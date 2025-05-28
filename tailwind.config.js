@@ -42,9 +42,11 @@ module.exports = {
         '0.7xl': '1.0625rem', // Between 'sm' and 'base'
         '0.8xl': '1.125rem',  // Between 'base' and 'lg'
         '1.3xl': '1.375rem',  // Between 'xl' and '2xl'
-        '2.5xl': '2rem',      // Between '2xl' and '3xl'
-        '3.2xl': '2.125rem',  // Between '3xl' and '4xl'
+        '2.5xl': '1.7rem',      // Between '2xl' and '3xl'
+        '3.2xl': '2rem',  // Between '3xl' and '4xl'
         '4.5xl': '2.75rem',   // Between '4xl' and '5xl'
+        '5.25xl': '3rem',   // Between '5xl' and '6xl'
+        '5.3xl': '3.05rem',   // Between '5xl' and '6xl'
         '5.5xl': '3.25rem',   // Between '5xl' and '6xl'
 
         // Additional tight range increments

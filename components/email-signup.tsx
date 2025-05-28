@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { useForm } from 'react-hook-form';
 
 // Email pattern validation
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -89,7 +89,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              A 3-step morning flow to wake up feeling amazing without caffeine
+            A 3 week course taking you through the full method to triple your energy
             </span>
           </li>
           <li className="flex items-start">
@@ -99,7 +99,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              The minimal training method that builds your powerful physique in 60% less time
+            The simple 3-step morning flow to wake up feeling amazing without caffeine
             </span>
           </li>
           <li className="flex items-start">
@@ -109,7 +109,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              A hormone reset system that triples your focus and energy without sunning your balls, biohacks or 'T boosters'.
+              A hormone reset system that triples your focus and energy without sunning your balls, biohacks or 'T boosters'
             </span>
           </li>
         </ul>
@@ -143,7 +143,7 @@ export default function EmailSignup() {
             })}
             type="email"
             placeholder="Your Email Address..."
-            className={`w-full p-5 h-16 text-base bg-zinc-800 border border-zinc-700 rounded text-white ${errors.email ? 'border-red-500' : ''}`}
+            className={`w-full p-5 h-13 text-base bg-zinc-800 border border-zinc-700 rounded text-white ${errors.email ? 'border-red-500' : ''}`}
             required
           />
           {errors.email && (
@@ -151,7 +151,7 @@ export default function EmailSignup() {
           )}
           <Button
             type="submit"
-            className="w-full p-5 h-16 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800"
+            className="w-full h-16 p-5 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Processing...' : 'Send me it over'}
@@ -162,7 +162,7 @@ export default function EmailSignup() {
         <div className="mt-5">
           <Button
             variant="outline"
-            className="w-full p-5 h-16 text-lg font-bold text-white bg-transparent border border-red-700 rounded hover:bg-red-900/20"
+            className="w-full h-16 p-5 text-lg font-bold text-white bg-transparent border border-red-700 rounded hover:bg-red-900/20"
           >
             JOIN LIMITLESS
           </Button>
