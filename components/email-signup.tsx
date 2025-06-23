@@ -89,7 +89,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-            A 3 week course taking you through the full method to triple your energy
+            The exact method to triple your energy in 3 weeks (no caffeine, no supplements, no bullshit)
             </span>
           </li>
           <li className="flex items-start">
@@ -109,7 +109,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              A hormone reset system that triples your focus and energy without sunning your balls, biohacks or 'T boosters'
+              How to reset your hormones and triple your focus without sunning your balls, biohacks or 'T boosters'
             </span>
           </li>
         </ul>
