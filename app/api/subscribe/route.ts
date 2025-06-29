@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-// Import will depend on which service you decide to use
-// import mailchimp from '@mailchimp/mailchimp_marketing';
 
 // Email validation function
 function isValidEmail(email: string): boolean {
@@ -36,48 +34,56 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Uncomment and configure the email service you want to use
+    // System.io API Integration
+    const systemeApiKey = process.env.SYSTEME_IO_API_KEY;
+    const systemeListId = process.env.SYSTEME_IO_LIST_ID;
 
-    /*
-    // Example for Mailchimp
-    mailchimp.setConfig({
-      apiKey: process.env.MAILCHIMP_API_KEY,
-      server: process.env.MAILCHIMP_SERVER_PREFIX,
-    });
+    if (!systemeApiKey || !systemeListId) {
+      console.error('Missing System.io configuration');
+      return NextResponse.json(
+        { success: false, message: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
 
-    await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID!, {
-      email_address: email,
-      status: 'subscribed',
-      merge_fields: {
-        FNAME: name || '',
-      },
-    });
-    */
-
-    /*
-    // For ConvertKit integration, you would need to use their official API directly:
-    // https://developers.convertkit.com/
-    // Example using fetch:
-
-    const response = await fetch(`https://api.convertkit.com/v3/forms/${process.env.CONVERTKIT_FORM_ID}/subscribe`, {
+    // Add contact to System.io
+    const systemeResponse = await fetch('https://systeme.io/api/contacts', {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${systemeApiKey}`,
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
-        api_key: process.env.CONVERTKIT_API_KEY,
-        email,
+        email: email,
         first_name: name || '',
+        lists: [parseInt(systemeListId)],
       }),
     });
 
-    const data = await response.json();
-    // Handle the response data
-    */
+    if (!systemeResponse.ok) {
+      const errorData = await systemeResponse.text();
+      console.error('System.io API error:', systemeResponse.status, errorData);
 
-    // Placeholder response - replace with actual service integration
+      // Handle duplicate email (usually not an error for the user)
+      if (systemeResponse.status === 422) {
+        return NextResponse.json(
+          { success: true, message: 'Successfully subscribed! Check your email for the first lesson.' },
+          { status: 200 }
+        );
+      }
+
+      return NextResponse.json(
+        { success: false, message: 'Failed to subscribe. Please try again later.' },
+        { status: 500 }
+      );
+    }
+
+    const responseData = await systemeResponse.json();
+    console.log('System.io success:', responseData);
+
     return NextResponse.json(
-      { success: true, message: 'Successfully subscribed to the newsletter!' },
+      { success: true, message: 'Successfully subscribed! Check your email for the first lesson.' },
       { status: 200 }
     );
   } catch (error) {

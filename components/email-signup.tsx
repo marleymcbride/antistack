@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
@@ -15,6 +16,7 @@ type SubscribeFormData = {
 };
 
 export default function EmailSignup() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitResult, setSubmitResult] = React.useState<{
     success: boolean;
@@ -59,14 +61,16 @@ export default function EmailSignup() {
 
       const result = await response.json();
 
+      if (response.ok) {
+        // Redirect to signup-watch-video page on success
+        router.push('/signup-watch-video');
+        return;
+      }
+
       setSubmitResult({
-        success: response.ok,
+        success: false,
         message: result.message,
       });
-
-      if (response.ok) {
-        reset(); // Clear the form on success
-      }
     } catch (error) {
       setSubmitResult({
         success: false,
