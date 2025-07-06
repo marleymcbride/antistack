@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import VideoSection from "@/components/video-section";
+import VideoSectionWithForcedChoice from "@/components/video-section-with-forced-choice";
 import EmailCTA from "@/components/email-cta";
 import EmailSignup from "@/components/email-signup";
 import SimpleTestimonials from "@/components/simple-testimonials";
@@ -11,11 +11,200 @@ import ProofSection from "@/components/proof-section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+// ===== FORCED CHOICE COPY VARIATIONS =====
+// Change the variation below to test different copy on your main page
+const copyVariations = {
+  // Variation A: Drag vs Glide Energy (Core concept) - CONCEPTUAL
+  dragVsGlide: {
+    triggerTime: 10,
+    overlayText: "Tired of DRAG ENERGY? That 3pm crash, caffeine dependency, constant fatigue?",
+    mainButtonText: "UNLOCK GLIDE ENERGY →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation B: 4% Trap (Scott's current situation) - SHORTENED
+  fourPercentTrap: {
+    triggerTime: 10,
+    overlayText: "You're health-conscious, hit the gym, watch your diet... but stuck in the 4% TRAP.",
+    mainButtonText: "BREAK INTO THE 1% →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation C: Anti-Stack Direct (Solution focused) - PUNCHY
+  antiStackDirect: {
+    triggerTime: 10,
+    overlayText: "Ready to quit caffeine without the crashes? The Anti-Stack™ works.",
+    mainButtonText: "GET THE ANTI-STACK →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation D: Executive Pain Point (Scott's morning struggle) - TARGETED
+  executivePain: {
+    triggerTime: 10,
+    overlayText: "Wake up exhausted? Need 3 coffees to function? Brain fog at 4pm?",
+    mainButtonText: "FIX MY ENERGY →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation E: Freedom > Frequency (Contrarian approach) - SHARP
+  freedomOverFrequency: {
+    triggerTime: 10,
+    overlayText: "Stop training 5-7 days a week. Get better results with 2-3 sessions.",
+    mainButtonText: "TRAIN LESS, ACHIEVE MORE →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation F: Natty Sweet Spot (Ultimate Male Form) - POWERFUL
+  nattySweetSpot: {
+    triggerTime: 10,
+    overlayText: "The Natty Sweet Spot™: Where strength, energy, and aesthetics converge. No substances.",
+    mainButtonText: "REACH THE SWEET SPOT →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation G: Lion vs Worker Bee (Lifestyle contrast) - IDENTITY
+  lionVsWorkerBee: {
+    triggerTime: 10,
+    overlayText: "LION: Rest, recover, then dominate. WORKER BEE: Grind until burnout. Which are you?",
+    mainButtonText: "BECOME THE LION →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation H: Time-focused (Scott's biggest constraint) - DIRECT
+  timeFocused: {
+    triggerTime: 10,
+    overlayText: "Work 12-16 hour days? No time for complex diets? This system fits your schedule.",
+    mainButtonText: "FITS MY SCHEDULE →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation I: Social Proof + Results (High conversion) - CREDIBLE
+  socialProof: {
+    triggerTime: 10,
+    overlayText: "742+ executives ditched caffeine using this. Client L: -35lbs, 15 months sober.",
+    mainButtonText: "JOIN THE 742 →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation J: ROI/Business Focus (Scott's language) - BUSINESS
+  businessRoi: {
+    triggerTime: 10,
+    overlayText: "Your energy = your most valuable asset. Stop trading performance for quick fixes.",
+    mainButtonText: "MAXIMIZE MY ROI →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation K: Direct Challenge (Polarizing) - PROVOCATIVE
+  directChallenge: {
+    triggerTime: 10,
+    overlayText: "Still depending on caffeine like a crutch? Time to fuel your body properly.",
+    mainButtonText: "EVOLVE NOW →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation L: Fear of Missing Out (Urgency) - COMPETITIVE
+  fomo: {
+    triggerTime: 10,
+    overlayText: "While you crash at 3pm, the 1% operate at peak energy all day. Join them.",
+    mainButtonText: "JOIN THE 1% →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation M: Short & Shocking - MINIMAL
+  shocking: {
+    triggerTime: 10,
+    overlayText: "3 coffees a day = 30 years off your life expectancy.",
+    mainButtonText: "BREAK THE CYCLE →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // Variation N: Question Hook - ENGAGING
+  questionHook: {
+    triggerTime: 10,
+    overlayText: "What if you could have unlimited energy without caffeine, alcohol, or stimulants?",
+    mainButtonText: "SHOW ME HOW →",
+    redirectUrl: "https://your-sales-page.com"
+  },
+
+  // NEW Variation O: Energy Promise (Perfect for main page) - SMOOTH
+  energyPromise: {
+    triggerTime: 10,
+    overlayText: "Ready to 3X your energy in the next 3 weeks? Get the complete system below:",
+    mainButtonText: "3X MY ENERGY →",
+    redirectUrl: "/blueprint-from-video"
+  }
+};
+
+// ===== EASY CONFIGURATION - CHANGE THIS LINE TO TEST DIFFERENT COPY =====
+const CURRENT_VARIATION = copyVariations.energyPromise; // ← Change "energyPromise" to any variation name above
+
 export default function Home() {
   const router = useRouter();
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false); // Start hidden
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [videoKey, setVideoKey] = useState(0); // Key to force video restart
+
+  // Show popup after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 3000); // 3 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Function to restart video
+  const restartVideo = () => {
+    console.log('🔄 Restarting video...');
+    setVideoKey(prev => prev + 1); // Force component remount with new key
+  };
+
+  // Function to enter fullscreen using Wistia's API
+  const enterFullscreen = () => {
+    console.log('🖥️ Entering fullscreen via Wistia API...');
+
+    // Try to use Wistia's built-in fullscreen
+    if (window.Wistia && window.Wistia.api) {
+      const allVideos = window.Wistia.api.all();
+      console.log('🎬 Found Wistia videos for fullscreen:', allVideos.length);
+
+      if (allVideos.length > 0) {
+        const video = allVideos[0]; // Use the first video
+
+        // Check if Wistia video has fullscreen method
+        if (video.requestFullscreen && typeof video.requestFullscreen === 'function') {
+          console.log('✅ Using Wistia requestFullscreen');
+          video.requestFullscreen();
+        } else if (video.fullscreen && typeof video.fullscreen === 'function') {
+          console.log('✅ Using Wistia fullscreen method');
+          video.fullscreen(true);
+        } else {
+          console.log('⚠️ Wistia fullscreen methods not available, trying iframe approach');
+          // Fallback: try to find the Wistia iframe and make it fullscreen
+          const wistiaIframe = document.querySelector('iframe[src*="wistia"]') ||
+                              document.querySelector('.wistia_embed iframe') ||
+                              document.querySelector('iframe');
+
+          if (wistiaIframe) {
+            if (wistiaIframe.requestFullscreen) {
+              wistiaIframe.requestFullscreen();
+            } else if ((wistiaIframe as any).webkitRequestFullscreen) {
+              (wistiaIframe as any).webkitRequestFullscreen();
+            }
+          }
+        }
+      } else {
+        console.log('❌ No Wistia videos found for fullscreen');
+      }
+    } else {
+      console.log('❌ Wistia API not available, retrying in 1 second...');
+      // Retry after 1 second if Wistia API isn't ready yet
+      setTimeout(() => {
+        enterFullscreen();
+      }, 1000);
+    }
+  };
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +225,8 @@ export default function Home() {
       });
 
       if (response.ok) {
+        // Restart video before redirecting
+        restartVideo();
         // Redirect to signup-watch-video page on success
         router.push('/signup-watch-video');
         return;
@@ -52,10 +243,17 @@ export default function Home() {
 
   const handleWatchVideo = () => {
     setShowPopup(false);
+    restartVideo(); // Restart video when "See how it works first" is clicked
+
+    // Enter fullscreen after a short delay to ensure video has restarted
+    setTimeout(() => {
+      enterFullscreen();
+    }, 500); // 500ms delay for video to load
   };
 
   const handleClose = () => {
     setShowPopup(false);
+    restartVideo(); // Restart video when close button is clicked
   };
   return (
     <>
@@ -88,12 +286,12 @@ export default function Home() {
             <div className="pt-8">
               {/* Headline */}
               <h1 className="mb-6 text-3xl font-black text-center text-white md:text-4xl lg:text-4xl">
-                Get the 21-Day to 3X Energy System
+                Hey, quick one before you watch the video
               </h1>
 
               {/* Subheadline */}
               <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-center text-red-50 md:text-lg">
-                Full access to the 3 week transformation blueprint, sent straight to your inbox. Watch the video, then dive deeper with a system that simply fucks.
+                If you want to get full access to a 3 week blueprint where I show you EXACTLY how you can triple your energy, pop your email in here and I'll start sending it over completely free from today.
               </p>
 
               {/* Email Form */}
@@ -131,11 +329,11 @@ export default function Home() {
 
               {/* Bottom Section */}
               <div className="mt-8 text-center">
-                <p className="mb-2 font-medium text-white">
-                  Want the full system for free after watching?
+                <p className="mb-2 text-white textfont-medium">
+                  Wanna steal my entire system?
                 </p>
                 <p className="text-sm font-bold text-red-50">
-                  Pop your email in and the first step will in your inbox by the time you've finished the video
+                Pop your email in and you'll have the step first in your inbox by the time you've finished the video.
                 </p>
               </div>
             </div>
@@ -145,15 +343,43 @@ export default function Home() {
 
       <main className="flex flex-col items-center min-h-screen">
       {/* Video Section */}
-      <section className="pb-0 w-full bg-white">
-        <VideoSection />
+      <section className="pb-6 w-full bg-white">
+        <div className="pt-4 pb-2 mx-auto w-full">
+          {/* Step 1 */}
+          <div className="mt-4 mb-6 text-center">
+            <p className="text-lg text-red-500">
+              <span className="font-bold">Step 1:</span> <span className="font-normal">Watch The Video</span>
+            </p>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[70%] mx-auto">
+            How I tripled my energy without coffee, crazy supplements or spending my life in the gym
+          </h1>
+          <h2 className="text-1xl md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-sm/7 text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[60%] mx-auto">
+            Watch the video to steal the full "Anti Stack" method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
+          </h2>
+
+          {/* Video Container - NO GAP between headline and video */}
+          <div className="px-4 mx-auto mt-8 w-full max-w-4xl lg:max-w-3xl">
+            <div className="relative mb-4 w-full lg:mb-4" data-video-container="true">
+              <VideoSectionWithForcedChoice
+                key={videoKey}
+                videoUrl="https://fast.wistia.com/embed/medias/nnbkix8deu"
+                forcedChoiceConfig={showPopup ? null : CURRENT_VARIATION} // Disable forced choice while popup is showing
+                autoPlay={true}
+                title=""
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Black Sections Container - Critical for no gaps */}
       <div className="w-full bg-zinc-900">
         {/* Step 2 Header - Black Bar */}
         <section className="w-full border-t border-black">
-          <div className="pt-14 text-center">
+          <div className="pt-10 text-center">
             <p className="text-lg text-red-500">
               <span className="font-bold">Step 2:</span> Claim Your Offer
             </p>
@@ -161,7 +387,7 @@ export default function Home() {
         </section>
 
         {/* Email Signup Section */}
-        <section className="pt-2 pb-16 w-full text-white">
+        <section className="pt-8 pb-16 w-full text-white">
           <div className="container px-4 mx-auto max-w-4xl text-center">
             {/* Main CTA Headline */}
             <h2 className="mb-4 text-5xl font-bold text-center">3X Your Energy in 3 Weeks</h2>
