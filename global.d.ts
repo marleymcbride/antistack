@@ -142,4 +142,22 @@ declare module 'lucide-react' {
   export const Check: (props: any) => JSX.Element;
   export const ChevronDown: (props: any) => JSX.Element;
   export const ChevronUp: (props: any) => JSX.Element;
+  export const ExternalLink: (props: any) => JSX.Element;
+  export const Mail: (props: any) => JSX.Element;
+  export const ShoppingCart: (props: any) => JSX.Element;
+}
+
+// Wistia Player API
+declare global {
+  interface Window {
+    Wistia?: {
+      api: (videoId: string) => {
+        bind: (event: string, callback: (time: number) => void) => void;
+        currentTime: () => number;
+        duration: () => number;
+        play: () => void;
+        pause: () => void;
+      };
+    };
+  }
 }

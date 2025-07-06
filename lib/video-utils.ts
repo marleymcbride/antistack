@@ -41,7 +41,7 @@ export function formatYouTubeUrl(url: string, enableApi: boolean = false): strin
 
   if (!videoId) return url;
 
-  const apiParams = enableApi ? '&enablejsapi=1&origin=' + window.location.origin : '';
+  const apiParams = enableApi ? `&enablejsapi=1${typeof window !== 'undefined' ? '&origin=' + window.location.origin : ''}` : '';
   return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1${apiParams}`;
 }
 
@@ -63,19 +63,32 @@ export function formatVimeoUrl(url: string, enableApi: boolean = false): string 
 }
 
 /**
- * Formats a Wistia URL into an embed URL
+ * Formats a Wistia URL into an embed URL with API support
  */
-export function formatWistiaUrl(url: string): string {
+export function formatWistiaUrl(url: string, enableApi: boolean = false): string {
   if (!url) return '';
 
-  // Extract video ID from Wistia URL
-  const regExp = /(?:wistia\.(?:com|net))\/(?:medias|embed)\/([a-zA-Z0-9]+)/;
-  const match = url.match(regExp);
-  const videoId = match ? match[1] : null;
+  // Extract video ID from various Wistia URL formats
+  let videoId = '';
+
+  // Handle different Wistia URL patterns
+  if (url.includes('/embed/medias/')) {
+    videoId = url.split('/embed/medias/')[1].split('?')[0];
+  } else if (url.includes('/embed/iframe/')) {
+    videoId = url.split('/embed/iframe/')[1].split('?')[0];
+  } else if (url.includes('/medias/')) {
+    videoId = url.split('/medias/')[1].split('?')[0];
+  } else {
+    // Fallback regex for other formats
+    const regExp = /(?:wistia\.(?:com|net))\/(?:embed\/)?(?:medias|iframe)\/([a-zA-Z0-9]+)/;
+    const match = url.match(regExp);
+    videoId = match ? match[1] : '';
+  }
 
   if (!videoId) return url;
 
-  return `https://fast.wistia.net/embed/iframe/${videoId}?videoFoam=true&autoPlay=true`;
+  // ALWAYS use medias format for JavaScript API access - this is what actually works!
+  return `https://fast.wistia.com/embed/medias/${videoId}?autoPlay=true`;
 }
 
 /**
