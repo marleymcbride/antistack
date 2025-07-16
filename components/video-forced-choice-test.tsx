@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import VideoSectionWithForcedChoice from './video-section-with-forced-choice';
 
 // Helper function to format time in MM:SS format
@@ -11,13 +11,13 @@ const formatTime = (seconds: number): string => {
 };
 
 export default function VideoForcedChoiceTest() {
-  const [wistiaStatus, setWistiaStatus] = useState({
+  const [wistiaStatus, setWistiaStatus] = React.useState({
     scriptLoaded: false,
     apiReady: false
   });
 
   // Check Wistia status periodically
-  useEffect(() => {
+  React.useEffect(() => {
     const checkWistiaStatus = () => {
       setWistiaStatus({
         scriptLoaded: !!(window.Wistia),
