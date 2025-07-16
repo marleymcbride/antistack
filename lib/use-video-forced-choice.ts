@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { getVideoType, VideoType } from '@/lib/video-utils';
 
 export interface ForcedChoiceConfig {
@@ -14,15 +14,15 @@ export function useVideoForcedChoice(
   videoUrl: string,
   config: ForcedChoiceConfig | null
 ) {
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-  const [hasTriggered, setHasTriggered] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [videoStarted, setVideoStarted] = useState(false);
+  const [isOverlayVisible, setIsOverlayVisible] = React.useState(false);
+  const [hasTriggered, setHasTriggered] = React.useState(false);
+  const [currentTime, setCurrentTime] = React.useState(0);
+  const [videoStarted, setVideoStarted] = React.useState(false);
 
   const videoType = getVideoType(videoUrl);
 
   // BULLETPROOF Wistia video time tracking
-  useEffect(() => {
+  React.useEffect(() => {
     if (!config || videoType !== 'wistia' || !videoStarted || hasTriggered) return;
 
     console.log('🎬 BULLETPROOF TRACKING: Setting up for trigger at:', config.triggerTime, 'seconds');
@@ -168,7 +168,7 @@ export function useVideoForcedChoice(
   }, [config, videoType, videoStarted, hasTriggered]);
 
   // Manual trigger for testing
-  useEffect(() => {
+  React.useEffect(() => {
     const manualTriggerHandler = () => {
       console.log('🔴 Manual trigger activated!');
       setIsOverlayVisible(true);
@@ -182,12 +182,12 @@ export function useVideoForcedChoice(
     };
   }, []);
 
-  const hideOverlay = useCallback(() => {
+  const hideOverlay = React.useCallback(() => {
     console.log('👋 Hiding overlay');
     setIsOverlayVisible(false);
   }, []);
 
-  const resetTrigger = useCallback(() => {
+  const resetTrigger = React.useCallback(() => {
     console.log('🔄 Resetting trigger');
     setHasTriggered(false);
     setIsOverlayVisible(false);
@@ -195,7 +195,7 @@ export function useVideoForcedChoice(
     setVideoStarted(false);
   }, []);
 
-  const startVideoTimer = useCallback(() => {
+  const startVideoTimer = React.useCallback(() => {
     console.log('▶️ Video started - beginning BULLETPROOF timestamp tracking');
     setVideoStarted(true);
   }, []);

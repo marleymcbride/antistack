@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import { VideoType } from './video-utils';
 import { VideoOverlay } from '@/components/video-overlay';
 
@@ -21,10 +21,10 @@ export const useVideoOverlays = ({
   onOverlayActive,
   onTimeUpdate,
 }: UseVideoOverlaysProps) => {
-  const currentTime = useRef<number>(0);
-  const activeOverlays = useRef<Set<string>>(new Set());
+  const currentTime = React.useRef<number>(0);
+  const activeOverlays = React.useRef<Set<string>>(new Set());
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!overlays.length) return;
 
     const checkOverlays = (time: number) => {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { Play } from 'lucide-react';
 import { getEmbedUrl, getVideoType } from '@/lib/video-utils';
 import { useVideoForcedChoice, ForcedChoiceConfig } from '@/lib/use-video-forced-choice';
@@ -8,7 +8,7 @@ import VideoForcedChoiceOverlay from './video-forced-choice-overlay';
 
 interface VideoSectionWithForcedChoiceProps {
   videoUrl: string;
-  forcedChoiceConfig?: ForcedChoiceConfig;
+  forcedChoiceConfig?: ForcedChoiceConfig | null;
   title?: string;
   className?: string;
   onMainAction?: () => void;
@@ -23,8 +23,8 @@ export default function VideoSectionWithForcedChoice({
   onMainAction,
   autoPlay = true // Default to false
 }: VideoSectionWithForcedChoiceProps) {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(autoPlay); // Auto-load if autoPlay is true
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = React.useState(autoPlay); // Auto-load if autoPlay is true
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   const {
     isOverlayVisible,
@@ -36,7 +36,7 @@ export default function VideoSectionWithForcedChoice({
   const videoType = getVideoType(videoUrl);
 
   // Wistia script loading - CRITICAL for JavaScript API
-  useEffect(() => {
+  React.useEffect(() => {
     if (videoType === 'wistia' && isVideoLoaded) {
       console.log('🎬 Loading Wistia API...');
 
@@ -60,7 +60,7 @@ export default function VideoSectionWithForcedChoice({
   }, [videoType, isVideoLoaded]);
 
   // Add postMessage listener to debug iframe communication
-  useEffect(() => {
+  React.useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       console.log('📨 Received postMessage from iframe:', event.data);
       console.log('📨 Message origin:', event.origin);
@@ -97,7 +97,7 @@ export default function VideoSectionWithForcedChoice({
   };
 
   // Auto-play effect - load video automatically if autoPlay is true
-  useEffect(() => {
+  React.useEffect(() => {
     if (autoPlay && !isVideoLoaded) {
       console.log('🎬 Auto-play enabled - loading video automatically');
       console.log('🎬 Auto-play: calling handleLoadVideo...');
@@ -106,7 +106,7 @@ export default function VideoSectionWithForcedChoice({
   }, [autoPlay, isVideoLoaded]);
 
   // Additional effect to ensure timer starts with auto-play
-  useEffect(() => {
+  React.useEffect(() => {
     if (autoPlay && isVideoLoaded) {
       console.log('🎬 Auto-play: Video loaded, ensuring timer starts...');
       // Double-check that the timer starts for auto-play
@@ -299,7 +299,7 @@ export default function VideoSectionWithForcedChoice({
   const wistiaVideoId = videoType === 'wistia' ? getWistiaVideoId(videoUrl) : '';
 
   // Log the formatted URL for debugging
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('🎬 Original video URL:', videoUrl);
     console.log('🎬 Formatted iframe URL:', formattedUrl);
     console.log('🎬 Video type detected:', videoType);
@@ -364,7 +364,7 @@ export default function VideoSectionWithForcedChoice({
               <VideoForcedChoiceOverlay
                 isVisible={isOverlayVisible}
                 onMainAction={handleMainAction}
-                onFinishVideo={handleFinishVideo}
+                onFinishVideoAction={handleFinishVideo}
                 mainButtonText={forcedChoiceConfig.mainButtonText}
                 overlayText={forcedChoiceConfig.overlayText}
                 redirectUrl={forcedChoiceConfig.redirectUrl}
@@ -424,7 +424,7 @@ export default function VideoSectionWithForcedChoice({
               <VideoForcedChoiceOverlay
                 isVisible={isOverlayVisible}
                 onMainAction={handleMainAction}
-                onFinishVideo={handleFinishVideo}
+                onFinishVideoAction={handleFinishVideo}
                 mainButtonText={forcedChoiceConfig.mainButtonText}
                 overlayText={forcedChoiceConfig.overlayText}
                 redirectUrl={forcedChoiceConfig.redirectUrl}

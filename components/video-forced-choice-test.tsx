@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import VideoSectionWithForcedChoice from './video-section-with-forced-choice';
 
 // Helper function to format time in MM:SS format
@@ -11,13 +11,13 @@ const formatTime = (seconds: number): string => {
 };
 
 export default function VideoForcedChoiceTest() {
-  const [wistiaStatus, setWistiaStatus] = useState({
+  const [wistiaStatus, setWistiaStatus] = React.useState({
     scriptLoaded: false,
     apiReady: false
   });
 
   // Check Wistia status periodically
-  useEffect(() => {
+  React.useEffect(() => {
     const checkWistiaStatus = () => {
       setWistiaStatus({
         scriptLoaded: !!(window.Wistia),
@@ -208,7 +208,7 @@ export default function VideoForcedChoiceTest() {
             </div>
             <div className="bg-zinc-700 p-3 rounded">
               <code className="text-yellow-400">fourPercentTrap</code>
-              <p className="text-zinc-300 mt-1 text-xs">SHORTENED: Scott's current situation recognition</p>
+              <p className="text-zinc-300 mt-1 text-xs">SHORTENED: Scott&apos;s current situation recognition</p>
             </div>
             <div className="bg-zinc-700 p-3 rounded">
               <code className="text-yellow-400">antiStackDirect</code>

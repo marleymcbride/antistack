@@ -71,7 +71,7 @@ export default function VideoTimestampAction({
                   🎯 Special Moment in the Video!
                 </h2>
                 <p className="text-lg mb-6">
-                  Ready to get the complete system while it's fresh in your mind?
+                  Ready to get the complete system while it&apos;s fresh in your mind?
                 </p>
                 <form onSubmit={handleEmailSubmit} className="space-y-4">
                   <Input

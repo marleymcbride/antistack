@@ -113,7 +113,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              How to reset your hormones and triple your focus without sunning your balls, biohacks or 'T boosters'
+              How to reset your hormones and triple your focus without sunning your balls, biohacks or &apos;T boosters&apos;
             </span>
           </li>
         </ul>
@@ -131,7 +131,7 @@ export default function EmailSignup() {
 
       {/* Quick Note on getting the email */}
       <p className="mt-10 mb-10 text-center text-zinc-400">
-        It's completely free, just give me your best email address and I'll send it your way.
+        It&apos;s completely free, just give me your best email address and I&apos;ll send it your way.
       </p>
 
       {/* Email Form */}

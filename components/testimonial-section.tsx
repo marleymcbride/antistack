@@ -48,7 +48,7 @@ export default function TestimonialSection() {
             <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
-                  I'd hit snooze 6 times every morning. Now I'm up before my alarm, no caffeine needed.
+                  I&apos;d hit snooze 6 times every morning. Now I&apos;m up before my alarm, no caffeine needed.
                 </p>
                 <p className="text-[10px] text-gray-500 text-right">08:32</p>
               </div>
@@ -89,8 +89,8 @@ export default function TestimonialSection() {
             <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
-                  "Wow this is the greatest thing I've ever seen. This system single-handedly made me a billionaire and my wife keeps checking if
-                  I'm having an affair because I actually have energy to f**k her again."
+                  &quot;Wow this is the greatest thing I&apos;ve ever seen. This system single-handedly made me a billionaire and my wife keeps checking if
+                  I&apos;m having an affair because I actually have energy to f**k her again.&quot;
                 </p>
                 <p className="text-[10px] text-gray-500 text-right">04:20</p>
               </div>
@@ -119,7 +119,7 @@ export default function TestimonialSection() {
             <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
-                  After 8 weeks, I've lost 22 pounds, doubled my output, and haven't touched caffeine in 37 days.
+                  After 8 weeks, I&apos;ve lost 22 pounds, doubled my output, and haven&apos;t touched caffeine in 37 days.
                 </p>
                 <p className="text-[10px] text-gray-500 text-right">14:15</p>
               </div>
@@ -142,7 +142,7 @@ export default function TestimonialSection() {
             <div className="p-2 space-y-2">
               <div className="bg-white p-2 rounded-lg max-w-[80%] shadow-sm">
                 <p className="text-sm">
-                  Right now I'm in the best phase of my life thanks to the foundations we set at the very beginning
+                  Right now I&apos;m in the best phase of my life thanks to the foundations we set at the very beginning
                   bro 🙏
                 </p>
                 <p className="text-[10px] text-gray-500 text-right">06:50</p>

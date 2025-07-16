@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import { VideoType } from './video-utils';
 
 export interface VideoTimestamp {
@@ -27,10 +27,10 @@ export const useVideoTimestamps = ({
   timestamps,
   onTimestampReached,
 }: UseVideoTimestampsProps) => {
-  const triggeredTimestamps = useRef<Set<string>>(new Set());
-  const currentTime = useRef<number>(0);
+  const triggeredTimestamps = React.useRef<Set<string>>(new Set());
+  const currentTime = React.useRef<number>(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!timestamps.length) return;
 
     const checkTimestamps = (time: number) => {
