@@ -208,7 +208,7 @@ export default function VideoForcedChoiceTest() {
             </div>
             <div className="bg-zinc-700 p-3 rounded">
               <code className="text-yellow-400">fourPercentTrap</code>
-              <p className="text-zinc-300 mt-1 text-xs">SHORTENED: Scott's current situation recognition</p>
+              <p className="text-zinc-300 mt-1 text-xs">SHORTENED: Scott&apos;s current situation recognition</p>
             </div>
             <div className="bg-zinc-700 p-3 rounded">
               <code className="text-yellow-400">antiStackDirect</code>
