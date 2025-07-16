@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 interface VideoForcedChoiceOverlayProps {
   isVisible: boolean;
   onMainAction: () => void;
-  onFinishVideo: () => void;
+  onFinishVideoAction: () => void; // Renamed to avoid Next.js warning
   mainButtonText?: string;
   overlayText?: string;
   redirectUrl?: string;
@@ -18,7 +18,7 @@ interface VideoForcedChoiceOverlayProps {
 export default function VideoForcedChoiceOverlay({
   isVisible,
   onMainAction,
-  onFinishVideo,
+  onFinishVideoAction,
   mainButtonText = "GET INSTANT ACCESS",
   overlayText = "Ready to transform your energy? Click below to get started:",
   redirectUrl,
@@ -26,10 +26,10 @@ export default function VideoForcedChoiceOverlay({
   onResumeVideo
 }: VideoForcedChoiceOverlayProps) {
   const router = useRouter();
-  const [wasFullscreen, setWasFullscreen] = useState(false);
+  const [wasFullscreen, setWasFullscreen] = React.useState(false);
 
   // Hide fullscreen notification after 3 seconds
-  useEffect(() => {
+  React.useEffect(() => {
     if (wasFullscreen) {
       const timer = setTimeout(() => {
         setWasFullscreen(false);
@@ -40,7 +40,7 @@ export default function VideoForcedChoiceOverlay({
   }, [wasFullscreen]);
 
   // Pause video when overlay becomes visible
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('🔍 Overlay visibility changed:', isVisible);
     console.log('🔍 onPauseVideo function available:', !!onPauseVideo);
 
@@ -95,7 +95,7 @@ export default function VideoForcedChoiceOverlay({
 
   const handleFinishVideo = () => {
     // First, hide the overlay
-    onFinishVideo();
+    onFinishVideoAction();
 
     // Then resume the video
     if (onResumeVideo) {
