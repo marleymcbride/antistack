@@ -291,7 +291,7 @@ export default function Home() {
 
               {/* Subheadline */}
               <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-center text-red-50 md:text-lg">
-                If you want to get full access to a 3 week blueprint where I show you EXACTLY how you can triple your energy, pop your email in here and I'll start sending it over completely free from today.
+                If you want to get full access to a 3 week blueprint where I show you EXACTLY how you can triple your energy, pop your email in here and I&apos;ll start sending it over completely free from today.
               </p>
 
               {/* Email Form */}
@@ -333,7 +333,7 @@ export default function Home() {
                   Wanna steal my entire system?
                 </p>
                 <p className="text-sm font-bold text-red-50">
-                Pop your email in and you'll have the step first in your inbox by the time you've finished the video.
+                Pop your email in and you&apos;ll have the step first in your inbox by the time you&apos;ve finished the video.
                 </p>
               </div>
             </div>
@@ -357,7 +357,7 @@ export default function Home() {
             How I tripled my energy without coffee, crazy supplements or spending my life in the gym
           </h1>
           <h2 className="text-1xl md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-sm/7 text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[60%] mx-auto">
-            Watch the video to steal the full "Anti Stack" method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
+            Watch the video to steal the full &quot;Anti Stack&quot; method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
           </h2>
 
           {/* Video Container - NO GAP between headline and video */}
