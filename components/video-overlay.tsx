@@ -25,14 +25,14 @@ interface VideoOverlayComponentProps {
   overlay: VideoOverlay;
   isVisible: boolean;
   currentTime: number;
-  onClose: () => void;
+  onCloseAction: () => void;
 }
 
 export default function VideoOverlayComponent({
   overlay,
   isVisible,
   currentTime,
-  onClose,
+  onCloseAction,
 }: VideoOverlayComponentProps) {
   const router = useRouter();
 
@@ -41,7 +41,7 @@ export default function VideoOverlayComponent({
   // Auto-hide logic
   const shouldAutoHide = overlay.autoHide && overlay.endTime && currentTime > overlay.endTime;
   if (shouldAutoHide) {
-    setTimeout(() => onClose(), 500);
+    setTimeout(() => onCloseAction(), 500);
   }
 
   const handleClick = () => {
@@ -55,7 +55,7 @@ export default function VideoOverlayComponent({
     }
 
     if (overlay.autoHide !== false) {
-      onClose();
+      onCloseAction();
     }
   };
 
@@ -108,7 +108,7 @@ export default function VideoOverlayComponent({
         {/* Close button */}
         {overlay.showCloseButton !== false && (
           <button
-            onClick={onClose}
+            onClick={onCloseAction}
             className="flex absolute -top-2 -right-2 justify-center items-center w-6 h-6 text-white rounded-full transition-colors bg-black/70 hover:bg-black/90"
           >
             ×

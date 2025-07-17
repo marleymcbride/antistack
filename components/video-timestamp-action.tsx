@@ -9,13 +9,13 @@ import { useRouter } from 'next/navigation';
 interface VideoTimestampActionProps {
   timestamp: VideoTimestamp | null;
   isVisible: boolean;
-  onClose: () => void;
+  onCloseAction: () => void;
 }
 
 export default function VideoTimestampAction({
   timestamp,
   isVisible,
-  onClose,
+  onCloseAction,
 }: VideoTimestampActionProps) {
   const router = useRouter();
   const [email, setEmail] = React.useState('');
@@ -49,7 +49,7 @@ export default function VideoTimestampAction({
     if (timestamp.url) {
       window.open(timestamp.url, '_blank');
     }
-    onClose();
+    onCloseAction();
   };
 
   if (timestamp.type === 'popup') {

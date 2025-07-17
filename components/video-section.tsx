@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { formatYouTubeUrl, getVideoType } from '@/lib/video-utils';
-import { Pause, Play, Volume2, VolumeX } from "lucide-react";
+import Image from 'next/image';
 import React from 'react';
 
 export default function VideoSection() {
@@ -57,23 +57,23 @@ export default function VideoSection() {
       <h2 className="text-1xl md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-sm/7 text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[60%] mx-auto">
       Watch the video to steal the full “Anti Stack” method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
       </h2>
-      
+
       {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
         How Quitting Pre-Workout Gave Me More Energy Than 5 Espressos Ever Did
       </h1> */}
-      
+
       {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
         Your Supplements Are Making You Tired
       </h1> */}
-      
+
       {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
         How I Got Jacked With All-Day Energy Using No Supplements, Still Eating Steak Dinners And Training 2 Days A Week
       </h1> */}
-      
+
       {/* <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
         How I Got Jacked With All-Day Energy Using No Supplements, Still Eating Steak Dinners And Training 2 Days A Week
       </h1> */}
-      
+
 
       <div className="w-full max-w-4xl px-4 mx-auto lg:max-w-2xl">
         <div className="relative w-full mb-10 lg:mb-6">
@@ -101,10 +101,11 @@ export default function VideoSection() {
               // If not playing, show the thumbnail with play button
               <>
                 <div className="relative w-full h-full">
-                  <img
+                  <Image
                     src={thumbnailUrl}
                     alt=""
-                    className="absolute inset-0 object-cover w-full h-full"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -112,7 +113,7 @@ export default function VideoSection() {
                     onClick={handlePlay}
                     className="flex items-center justify-center w-20 h-20 text-white transition-transform transform bg-red-600 rounded-full hover:bg-red-700 hover:scale-110"
                   >
-                    <Play className="ml-1" size={28} />
+                    <span className="text-2xl">▶</span>
                   </Button>
                 </div>
               </>
@@ -127,7 +128,7 @@ export default function VideoSection() {
                   className="border-0 bg-black/50 hover:bg-black/70"
                   onClick={togglePlay}
                 >
-                  {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                  {isPlaying ? <span className="text-sm">⏸</span> : <span className="text-sm">▶</span>}
                 </Button>
                 <Button
                   variant="outline"
@@ -135,7 +136,7 @@ export default function VideoSection() {
                   className="border-0 bg-black/50 hover:bg-black/70"
                   onClick={toggleMute}
                 >
-                  {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                  {isMuted ? <span className="text-sm">🔇</span> : <span className="text-sm">🔊</span>}
                 </Button>
               </div>
             )}
