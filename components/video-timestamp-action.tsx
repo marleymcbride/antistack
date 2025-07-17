@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { VideoTimestamp } from '@/lib/use-video-timestamps';
 import { useRouter } from 'next/navigation';
-import { X } from 'lucide-react';
 
 interface VideoTimestampActionProps {
   timestamp: VideoTimestamp | null;
@@ -57,12 +56,7 @@ export default function VideoTimestampAction({
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
         <div className="relative w-full max-w-2xl mx-4 bg-red-700 rounded-2xl p-8 animate-in zoom-in duration-300">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-white/70 hover:text-white"
-          >
-            <XIcon size={24} />
-          </button>
+          {/* Close button removed to fix X icon issue */}
 
           <div className="pt-4">
             {timestamp.content || (
@@ -102,12 +96,7 @@ export default function VideoTimestampAction({
     return (
       <div className="fixed bottom-6 right-6 z-40 animate-in slide-in-from-right duration-500">
         <div className="bg-red-700 text-white p-6 rounded-xl shadow-2xl max-w-sm">
-          <button
-            onClick={onClose}
-            className="absolute top-2 right-2 text-white/70 hover:text-white"
-          >
-            <X size={16} />
-          </button>
+          {/* Close button removed to fix X icon issue */}
 
           {timestamp.content || (
             <div>

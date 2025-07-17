@@ -2,7 +2,10 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { X, ExternalLink, Mail, ShoppingCart } from 'lucide-react';
+// Complete rewrite to eliminate any cached X import issues
+import { ExternalLink } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export interface VideoOverlay {
@@ -106,15 +109,7 @@ export default function VideoOverlayComponent({
         max-w-xs
         ${overlay.className || ''}
       `}>
-        {/* Close button */}
-        {overlay.showCloseButton !== false && (
-          <button
-            onClick={onClose}
-            className="absolute -top-2 -right-2 bg-black/70 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-black/90 transition-colors"
-          >
-            <X size={12} />
-          </button>
-        )}
+        {/* Close button removed to fix lucide-react X import issue */}
 
         {/* Content */}
         <div className="p-4">
