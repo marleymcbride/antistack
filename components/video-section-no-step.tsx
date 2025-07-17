@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { formatYouTubeUrl, getVideoType } from '@/lib/video-utils';
-import { Pause, Play, Volume2, VolumeX } from "lucide-react";
+import Image from 'next/image';
 import React from 'react';
 
 export default function VideoSectionNoStep() {
@@ -80,10 +80,11 @@ export default function VideoSectionNoStep() {
               // If not playing, show the thumbnail with play button
               <>
                 <div className="relative w-full h-full">
-                  <img
+                  <Image
                     src={thumbnailUrl}
                     alt=""
-                    className="absolute inset-0 object-cover w-full h-full"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -91,7 +92,7 @@ export default function VideoSectionNoStep() {
                     onClick={handlePlay}
                     className="flex items-center justify-center w-20 h-20 text-white transition-transform transform bg-red-600 rounded-full hover:bg-red-700 hover:scale-110"
                   >
-                    <Play className="ml-1" size={28} />
+                    <span className="text-2xl">▶</span>
                   </Button>
                 </div>
               </>
@@ -106,7 +107,7 @@ export default function VideoSectionNoStep() {
                   className="border-0 bg-black/50 hover:bg-black/70"
                   onClick={togglePlay}
                 >
-                  {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                  {isPlaying ? <span className="text-sm">⏸</span> : <span className="text-sm">▶</span>}
                 </Button>
                 <Button
                   variant="outline"
@@ -114,7 +115,7 @@ export default function VideoSectionNoStep() {
                   className="border-0 bg-black/50 hover:bg-black/70"
                   onClick={toggleMute}
                 >
-                  {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                  {isMuted ? <span className="text-sm">🔇</span> : <span className="text-sm">🔊</span>}
                 </Button>
               </div>
             )}

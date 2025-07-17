@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Play } from 'lucide-react';
 import { getEmbedUrl, getVideoType } from '@/lib/video-utils';
 import { useVideoForcedChoice, ForcedChoiceConfig } from '@/lib/use-video-forced-choice';
@@ -74,7 +74,7 @@ export default function VideoSectionWithForcedChoice({
     };
   }, []);
 
-  const handleLoadVideo = useCallback(() => {
+  const handleLoadVideo = React.useCallback(() => {
     setIsVideoLoaded(true);
     resetTrigger(); // Reset any previous triggers
 
@@ -324,14 +324,15 @@ export default function VideoSectionWithForcedChoice({
                 className="flex justify-center items-center w-full h-full cursor-pointer group"
                 onClick={handleLoadVideo}
               >
-                <img
+                <Image
                   src="/placeholder.svg"
                   alt="Wistia video thumbnail"
-                  className="object-cover w-full h-full"
+                  fill
+                  className="object-cover"
                 />
                 <div className="flex absolute inset-0 justify-center items-center bg-black/30">
                   <div className="p-6 bg-red-700 rounded-full transition-transform hover:bg-red-800 group-hover:scale-110">
-                    <Play size={48} className="ml-1 text-white" />
+                    <span className="text-4xl text-white">▶</span>
                   </div>
                 </div>
               </div>
@@ -384,14 +385,15 @@ export default function VideoSectionWithForcedChoice({
                 className="flex justify-center items-center w-full h-full cursor-pointer group"
                 onClick={handleLoadVideo}
               >
-                <img
+                <Image
                   src="/placeholder.svg"
                   alt="Video thumbnail"
-                  className="object-cover w-full h-full"
+                  fill
+                  className="object-cover"
                 />
                 <div className="flex absolute inset-0 justify-center items-center bg-black/30">
                   <div className="p-5 bg-red-600 rounded-full transition-transform hover:bg-red-700 group-hover:scale-110">
-                    <Play size={28} className="ml-1 text-white" />
+                    <span className="text-2xl text-white">▶</span>
                   </div>
                 </div>
               </div>
