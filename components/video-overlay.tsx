@@ -94,7 +94,7 @@ export default function VideoOverlayComponent({
 
   return (
     <div
-      className={`absolute z-30 animate-in slide-in-from-bottom-2 duration-500 ${getPositionClasses()}`}
+      className={`absolute z-30 duration-500 animate-in slide-in-from-bottom-2 ${getPositionClasses()}`}
     >
       <div className={`
         bg-gradient-to-r from-red-600 to-red-700
@@ -111,13 +111,13 @@ export default function VideoOverlayComponent({
         {/* Content */}
         <div className="p-4">
           {/* Title */}
-          <h3 className="font-bold text-sm mb-1 leading-tight">
+          <h3 className="mb-1 text-sm font-bold leading-tight">
             {overlay.title}
           </h3>
 
           {/* Subtitle */}
           {overlay.subtitle && (
-            <p className="text-xs text-red-100 mb-3 leading-tight">
+            <p className="mb-3 text-xs leading-tight text-red-100">
               {overlay.subtitle}
             </p>
           )}
@@ -125,7 +125,7 @@ export default function VideoOverlayComponent({
           {/* CTA Button */}
           <Button
             onClick={handleClick}
-            className="w-full bg-black hover:bg-gray-900 text-white text-xs py-2 h-auto flex items-center justify-center gap-2 transition-all hover:scale-105"
+            className="flex gap-2 justify-center items-center py-2 w-full h-auto text-xs text-white bg-black transition-all hover:bg-gray-900 hover:scale-105"
           >
             {getIcon()}
             {overlay.buttonText}
@@ -133,7 +133,7 @@ export default function VideoOverlayComponent({
         </div>
 
         {/* Pulse animation border */}
-        <div className="absolute inset-0 rounded-xl border-2 border-yellow-400 animate-pulse opacity-50"></div>
+        <div className="absolute inset-0 rounded-xl border-2 border-yellow-400 opacity-50 animate-pulse"></div>
       </div>
     </div>
   );
