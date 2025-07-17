@@ -54,17 +54,17 @@ export default function VideoTimestampAction({
 
   if (timestamp.type === 'popup') {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-        <div className="relative w-full max-w-2xl mx-4 bg-red-700 rounded-2xl p-8 animate-in zoom-in duration-300">
+      <div className="flex fixed inset-0 z-50 justify-center items-center backdrop-blur-sm duration-300 bg-black/80 animate-in fade-in">
+        <div className="relative p-8 mx-4 w-full max-w-2xl bg-red-700 rounded-2xl duration-300 animate-in zoom-in">
           {/* Close button removed to fix X icon issue */}
 
           <div className="pt-4">
             {timestamp.content || (
               <div className="text-center text-white">
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="mb-4 text-2xl font-bold">
                   🎯 Special Moment in the Video!
                 </h2>
-                <p className="text-lg mb-6">
+                <p className="mb-6 text-lg">
                   Ready to get the complete system while it&apos;s fresh in your mind?
                 </p>
                 <form onSubmit={handleEmailSubmit} className="space-y-4">
@@ -73,13 +73,13 @@ export default function VideoTimestampAction({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email to continue..."
-                    className="w-full px-4 py-3 text-black bg-white rounded"
+                    className="px-4 py-3 w-full text-black bg-white rounded"
                     required
                   />
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-black hover:bg-gray-900 text-white py-3"
+                    className="py-3 w-full text-white bg-black hover:bg-gray-900"
                   >
                     {isSubmitting ? 'Getting Access...' : 'Get Complete System Now →'}
                   </Button>
@@ -94,17 +94,17 @@ export default function VideoTimestampAction({
 
   if (timestamp.type === 'cta') {
     return (
-      <div className="fixed bottom-6 right-6 z-40 animate-in slide-in-from-right duration-500">
-        <div className="bg-red-700 text-white p-6 rounded-xl shadow-2xl max-w-sm">
+      <div className="fixed right-6 bottom-6 z-40 duration-500 animate-in slide-in-from-right">
+        <div className="p-6 max-w-sm text-white bg-red-700 rounded-xl shadow-2xl">
           {/* Close button removed to fix X icon issue */}
 
           {timestamp.content || (
             <div>
-              <h3 className="font-bold text-lg mb-2">Perfect Timing!</h3>
-              <p className="text-sm mb-4">Get the system that does exactly what you just saw</p>
+              <h3 className="mb-2 text-lg font-bold">Perfect Timing!</h3>
+              <p className="mb-4 text-sm">Get the system that does exactly what you just saw</p>
               <Button
                 onClick={handleRedirect}
-                className="w-full bg-black hover:bg-gray-900 text-white py-2"
+                className="py-2 w-full text-white bg-black hover:bg-gray-900"
               >
                 Get Access Now
               </Button>
