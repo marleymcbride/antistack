@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Play } from 'lucide-react';
 import { getEmbedUrl, getVideoType } from '@/lib/video-utils';
 import { useVideoForcedChoice, ForcedChoiceConfig } from '@/lib/use-video-forced-choice';
@@ -74,7 +74,7 @@ export default function VideoSectionWithForcedChoice({
     };
   }, []);
 
-  const handleLoadVideo = () => {
+  const handleLoadVideo = useCallback(() => {
     setIsVideoLoaded(true);
     resetTrigger(); // Reset any previous triggers
 
@@ -83,7 +83,7 @@ export default function VideoSectionWithForcedChoice({
       console.log('🎬 Starting video timer after load delay');
       startVideoTimer();
     }, 1000); // 1 second delay to ensure video actually starts
-  };
+  }, [resetTrigger, startVideoTimer]);
 
   const handleMainAction = () => {
     if (onMainAction) {
