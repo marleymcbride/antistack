@@ -61,7 +61,7 @@ export default function VideoTimestampAction({
             onClick={onClose}
             className="absolute top-4 right-4 text-white/70 hover:text-white"
           >
-            <XIcon size={24} />
+            <X size={24} />
           </button>
 
           <div className="pt-4">
