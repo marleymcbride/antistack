@@ -2,10 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-// Complete rewrite to eliminate any cached X import issues
-import { ExternalLink } from 'lucide-react';
-import { Mail } from 'lucide-react';
-import { ShoppingCart } from 'lucide-react';
+import { X, ArrowUpRight, Mail, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export interface VideoOverlay {
@@ -68,7 +65,7 @@ export default function VideoOverlayComponent({
       case 'mail':
         return <Mail size={16} />;
       case 'external':
-        return <ExternalLink size={16} />;
+        return <ArrowUpRight size={16} />;
       case 'cart':
         return <ShoppingCart size={16} />;
       default:
@@ -109,7 +106,15 @@ export default function VideoOverlayComponent({
         max-w-xs
         ${overlay.className || ''}
       `}>
-        {/* Close button removed to fix lucide-react X import issue */}
+        {/* Close button */}
+        {overlay.showCloseButton !== false && (
+          <button
+            onClick={onClose}
+            className="absolute -top-2 -right-2 bg-black/70 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-black/90 transition-colors"
+          >
+            <X size={12} />
+          </button>
+        )}
 
         {/* Content */}
         <div className="p-4">
