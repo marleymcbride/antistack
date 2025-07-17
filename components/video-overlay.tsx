@@ -109,7 +109,7 @@ export default function VideoOverlayComponent({
         {overlay.showCloseButton !== false && (
           <button
             onClick={onClose}
-            className="absolute -top-2 -right-2 bg-black/70 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-black/90 transition-colors"
+            className="flex absolute -top-2 -right-2 justify-center items-center w-6 h-6 text-white rounded-full transition-colors bg-black/70 hover:bg-black/90"
           >
             ×
           </button>
