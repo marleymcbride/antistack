@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { VideoTimestamp } from '@/lib/use-video-timestamps';
 import { useRouter } from 'next/navigation';
-import { X } from 'lucide-react';
+import { XIcon } from 'lucide-react';
 
 interface VideoTimestampActionProps {
   timestamp: VideoTimestamp | null;
@@ -106,7 +106,7 @@ export default function VideoTimestampAction({
             onClick={onClose}
             className="absolute top-2 right-2 text-white/70 hover:text-white"
           >
-            <X size={16} />
+            <XIcon size={16} />
           </button>
 
           {timestamp.content || (

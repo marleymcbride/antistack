@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { X, ExternalLink, Mail, ShoppingCart } from 'lucide-react';
+import { XIcon, ExternalLink, Mail, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export interface VideoOverlay {
@@ -112,7 +112,7 @@ export default function VideoOverlayComponent({
             onClick={onClose}
             className="absolute -top-2 -right-2 bg-black/70 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-black/90 transition-colors"
           >
-            <X size={12} />
+            <XIcon size={12} />
           </button>
         )}
 
