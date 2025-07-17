@@ -173,12 +173,12 @@ export default function Home() {
         const video = allVideos[0]; // Use the first video
 
         // Check if Wistia video has fullscreen method
-        if (video.requestFullscreen && typeof video.requestFullscreen === 'function') {
+        if ((video as any).requestFullscreen && typeof (video as any).requestFullscreen === 'function') {
           console.log('✅ Using Wistia requestFullscreen');
-          video.requestFullscreen();
-        } else if (video.fullscreen && typeof video.fullscreen === 'function') {
+          (video as any).requestFullscreen();
+        } else if ((video as any).fullscreen && typeof (video as any).fullscreen === 'function') {
           console.log('✅ Using Wistia fullscreen method');
-          video.fullscreen(true);
+          (video as any).fullscreen(true);
         } else {
           console.log('⚠️ Wistia fullscreen methods not available, trying iframe approach');
           // Fallback: try to find the Wistia iframe and make it fullscreen
