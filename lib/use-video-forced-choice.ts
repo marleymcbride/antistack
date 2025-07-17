@@ -165,7 +165,7 @@ export function useVideoForcedChoice(
       if (intervalId) clearInterval(intervalId);
       if (wistiaCheckInterval) clearInterval(wistiaCheckInterval);
     };
-  }, [config, videoType, videoStarted, hasTriggered]);
+  }, [config, videoType, videoStarted, hasTriggered, videoUrl]);
 
   // Manual trigger for testing
   React.useEffect(() => {

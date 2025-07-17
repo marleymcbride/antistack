@@ -103,7 +103,7 @@ export default function VideoSectionWithForcedChoice({
       console.log('🎬 Auto-play: calling handleLoadVideo...');
       handleLoadVideo();
     }
-  }, [autoPlay, isVideoLoaded]);
+  }, [autoPlay, isVideoLoaded, handleLoadVideo]);
 
   // Additional effect to ensure timer starts with auto-play
   React.useEffect(() => {
