@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Play } from 'lucide-react';
+import Image from 'next/image';
 import { getEmbedUrl, getVideoType } from '@/lib/video-utils';
 import { useVideoForcedChoice, ForcedChoiceConfig } from '@/lib/use-video-forced-choice';
 import VideoForcedChoiceOverlay from './video-forced-choice-overlay';
