@@ -60,7 +60,7 @@ export function useVideoForcedChoice(
 
           // Check different possible time methods
           const timeMethodOptions = ['currentTime', 'time', 'getCurrentTime', 'getTime'];
-          let workingTimeMethod = null;
+          let workingTimeMethod: string | null = null;
 
           for (const method of timeMethodOptions) {
             if (video[method] && typeof video[method] === 'function') {
