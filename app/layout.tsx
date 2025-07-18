@@ -15,13 +15,17 @@ export const metadata = {
   description: 'Discover how to triple your energy levels in just 21 days with the Limitless Protocol.',
   keywords: ['energy', 'fitness', 'coaching', 'health', 'productivity'],
   authors: [{ name: 'Marley McBride' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   }
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
