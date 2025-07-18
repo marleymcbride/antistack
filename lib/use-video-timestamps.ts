@@ -159,17 +159,3 @@ export const useVideoTimestamps = ({
 
   return { resetTimestamps, getCurrentTime };
 };
-
-// Declare global Wistia types
-declare global {
-  interface Window {
-    Wistia?: {
-      api: (id: string) => {
-        bind: (event: string, callback: (data: any) => void) => void;
-        currentTime: () => number;
-        play: () => void;
-        pause: () => void;
-      };
-    };
-  }
-}
