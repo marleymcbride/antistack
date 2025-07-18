@@ -276,7 +276,7 @@ export default function VideoSectionWithOverlays({
             {renderVideoPlayer()}
 
             {/* Video Overlays */}
-            {Array.from(activeOverlays.values()).map((overlay: VideoOverlay) => (
+            {(Array.from(activeOverlays.values()) as VideoOverlay[]).map((overlay) => (
               <VideoOverlayComponent
                 key={overlay.id}
                 overlay={overlay}
