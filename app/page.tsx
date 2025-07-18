@@ -355,10 +355,10 @@ export default function Home() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[70%] mx-auto">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[70%] mx-auto">
             How I tripled my energy without coffee, crazy supplements or spending my life in the gym
           </h1>
-          <h2 className="text-1xl md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-sm/7 text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[30%] sm:max-w-[30%] md:max-w-[60%] mx-auto">
+          <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
             Watch the video to steal the full &quot;Anti Stack&quot; method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
           </h2>
 
