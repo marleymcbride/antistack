@@ -20,6 +20,7 @@ export default function VideoTimestampAction({
   const router = useRouter();
   const [email, setEmail] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string>('');
 
   if (!timestamp || !isVisible) return null;
 
@@ -30,11 +31,13 @@ export default function VideoTimestampAction({
     // Validate email format
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(email)) {
-      console.error('Invalid email format');
+      setError('Please enter a valid email address');
       return;
     }
 
     setIsSubmitting(true);
+    setError('');
+
     try {
       // Submit to N8N webhook with dual-endpoint fallback
       const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
@@ -50,7 +53,8 @@ export default function VideoTimestampAction({
 
     } catch (error) {
       console.error('N8N webhook error:', error);
-      // Note: This component doesn't have error display UI, maintaining existing pattern
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred. Please try again.';
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -87,6 +91,11 @@ export default function VideoTimestampAction({
                     className="px-4 py-3 w-full text-black bg-white rounded"
                     required
                   />
+                  {error && (
+                    <div className="p-3 bg-red-600 text-white rounded">
+                      {error}
+                    </div>
+                  )}
                   <Button
                     type="submit"
                     disabled={isSubmitting}

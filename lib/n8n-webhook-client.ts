@@ -87,6 +87,8 @@ async function submitToN8nWebhookDirect(
   endpoint: string,
   payload: WebhookPayload
 ): Promise<WebhookResponse> {
+  console.log('🔄 Submitting to N8N webhook:', endpoint, payload);
+
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -96,16 +98,52 @@ async function submitToN8nWebhookDirect(
       body: JSON.stringify(payload),
     });
 
-    // Always parse JSON response regardless of HTTP status
+    console.log('📡 N8N response status:', response.status, response.statusText);
+
+    // Handle non-200 responses
+    if (!response.ok) {
+      let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+
+      // Try to get error details from response
+      try {
+        const errorData = await response.text();
+        console.log('❌ N8N error response:', errorData);
+
+        // Try to parse as JSON first
+        try {
+          const errorJson = JSON.parse(errorData);
+          if (errorJson.message) {
+            errorMessage = errorJson.message;
+          } else if (errorJson.error) {
+            errorMessage = errorJson.error;
+          }
+        } catch (jsonError) {
+          // If not JSON, use the text response
+          if (errorData.length > 0 && errorData.length < 200) {
+            errorMessage = errorData;
+          }
+        }
+      } catch (textError) {
+        // Fallback to status text if we can't read response
+        console.log('Could not read error response:', textError);
+      }
+
+      throw new Error(errorMessage);
+    }
+
+    // Parse successful response
     let result: WebhookResponse;
     try {
-      result = await response.json();
+      const responseText = await response.text();
+      console.log('✅ N8N success response:', responseText);
+      result = JSON.parse(responseText);
     } catch (jsonError) {
+      console.error('❌ Failed to parse N8N response as JSON:', jsonError);
       throw new Error('Invalid response format from webhook');
     }
 
-    // Check webhook success field first (N8N specific)
-    if (!result.success) {
+    // Check webhook success field (N8N specific)
+    if (result.success === false) {
       let userMessage = 'Something went wrong. Please try again.';
 
       // Map N8N error responses to user-friendly messages
@@ -127,12 +165,20 @@ async function submitToN8nWebhookDirect(
       throw webhookError;
     }
 
-    // Success - return the response
+    // Handle case where success field is missing (assume success if no error)
+    if (result.success === undefined) {
+      result.success = true;
+      result.message = result.message || 'Successfully submitted';
+    }
+
+    console.log('🎉 N8N webhook submission successful:', result);
     return result;
 
   } catch (error) {
+    console.error('❌ N8N webhook error:', error);
+
     // Handle network errors
-    if (error instanceof Error && error.message.includes('fetch')) {
+    if (error instanceof Error && (error.message.includes('fetch') || error.message.includes('Failed to fetch'))) {
       const networkError = new Error('Connection failed. Please check your internet and try again.') as WebhookError;
       networkError.webhookError = true;
       networkError.errorType = 'NETWORK_ERROR';
@@ -146,7 +192,7 @@ async function submitToN8nWebhookDirect(
     }
 
     // Handle unexpected errors
-    const unexpectedError = new Error('An unexpected error occurred. Please try again.') as WebhookError;
+    const unexpectedError = new Error(error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.') as WebhookError;
     unexpectedError.webhookError = true;
     unexpectedError.errorType = 'UNEXPECTED_ERROR';
     unexpectedError.endpoint = endpoint;
