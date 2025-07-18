@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Play } from 'lucide-react';
 import Image from 'next/image';
 import { getEmbedUrl, getVideoType } from '@/lib/video-utils';
@@ -75,7 +75,7 @@ export default function VideoSectionWithForcedChoice({
     };
   }, []);
 
-  const handleLoadVideo = React.useCallback(() => {
+  const handleLoadVideo = useCallback(() => {
     setIsVideoLoaded(true);
     resetTrigger(); // Reset any previous triggers
 
@@ -342,8 +342,7 @@ export default function VideoSectionWithForcedChoice({
               videoType === 'wistia' ? (
                 /* Wistia requires div embedding for JavaScript API */
                 <div
-                  className={`wistia_embed wistia_async_${wistiaVideoId} autoPlay=true`}
-                  style={{ width: '100%', height: '100%', position: 'relative' }}
+                  className={`wistia_embed wistia_async_${wistiaVideoId} autoPlay=true w-full h-full relative`}
                 >
                   &nbsp;
                 </div>
@@ -352,11 +351,10 @@ export default function VideoSectionWithForcedChoice({
                   ref={iframeRef}
                   src={formattedUrl}
                   title="Video Player"
-                  className="w-full h-full"
+                  className="w-full h-full border-0"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  style={{ border: 'none' }}
                 />
               )
             )}
@@ -403,8 +401,7 @@ export default function VideoSectionWithForcedChoice({
               videoType === 'wistia' ? (
                 /* Wistia requires div embedding for JavaScript API */
                 <div
-                  className={`wistia_embed wistia_async_${wistiaVideoId} autoPlay=true`}
-                  style={{ width: '100%', height: '100%', position: 'relative' }}
+                  className={`wistia_embed wistia_async_${wistiaVideoId} autoPlay=true w-full h-full relative`}
                 >
                   &nbsp;
                 </div>
@@ -413,11 +410,10 @@ export default function VideoSectionWithForcedChoice({
                   ref={iframeRef}
                   src={formattedUrl}
                   title="Video Player"
-                  className="w-full h-full"
+                  className="w-full h-full border-0"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  style={{ border: 'none' }}
                 />
               )
             )}
