@@ -169,7 +169,7 @@ export default function VideoForcedChoiceOverlay({
   if (!isVisible) return null;
 
   return (
-    <div className="absolute inset-0 z-[999999] bg-black" style={{ zIndex: 999999, backgroundColor: '#000000' }}>
+    <div className="absolute inset-0 z-[999999] bg-black">
       <div className="absolute inset-0 flex flex-col justify-center items-center">
         {/* Fullscreen Exit Notification */}
         {wasFullscreen && (
