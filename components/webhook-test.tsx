@@ -75,6 +75,21 @@ export default function WebhookTest() {
           <p className="text-sm">
             <strong>Fallback:</strong> {process.env.NEXT_PUBLIC_N8N_FALLBACK_WEBHOOK || 'NOT SET'}
           </p>
+
+          <div className="mt-4 p-3 bg-yellow-100 rounded border">
+            <h4 className="font-medium text-sm mb-2">Expected Configuration:</h4>
+            <p className="text-xs text-gray-700">
+              <strong>Primary:</strong> https://n8n.marleymcbride.co/webhook/3x-energy-leads
+            </p>
+            <p className="text-xs text-gray-700">
+              <strong>Fallback:</strong> https://n8n.marleymcbride.co/webhook/systeme-add-contact
+            </p>
+            {process.env.NEXT_PUBLIC_N8N_PRIMARY_WEBHOOK !== 'https://n8n.marleymcbride.co/webhook/3x-energy-leads' && (
+              <p className="text-red-600 text-xs mt-2">
+                ⚠️ Primary endpoint mismatch! Update your .env.local file.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
