@@ -45,36 +45,26 @@ export default function EmailCTA() {
     setSubmitResult(null);
 
     try {
-      // Add name as empty string to match the API expectations
-      const payload = {
-        ...data,
-        name: '',
-      };
+      // Submit to N8N webhook with dual-endpoint fallback
+      const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
 
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+      await submitToN8nWebhook(
+        data.email,
+        '', // firstName - empty for this form
+        'hero-section' // source tracking
+      );
 
-      const result = await response.json();
+      // Success - redirect to signup-watch-video page
+      router.push('/signup-watch-video');
+      return;
 
-      if (response.ok) {
-        // Redirect to signup-watch-video page on success
-        router.push('/signup-watch-video');
-        return;
-      }
-
-      setSubmitResult({
-        success: false,
-        message: result.message,
-      });
     } catch (error) {
+      // Handle N8N webhook errors with professional messages
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred. Please try again later.';
+
       setSubmitResult({
         success: false,
-        message: 'An error occurred. Please try again later.',
+        message: errorMessage,
       });
     } finally {
       setIsSubmitting(false);

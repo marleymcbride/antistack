@@ -210,32 +210,34 @@ export default function Home() {
     e.preventDefault();
     if (!email) return;
 
+    // Validate email format
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!emailRegex.test(email)) {
+      console.error('Invalid email format');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          name: '',
-        }),
-      });
+      // Submit to N8N webhook with dual-endpoint fallback
+      const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
 
-      if (response.ok) {
-        // Restart video before redirecting
-        restartVideo();
-        // Redirect to signup-watch-video page on success
-        router.push('/signup-watch-video');
-        return;
-      }
+      await submitToN8nWebhook(
+        email,
+        '', // firstName - empty for this form
+        'main-page-section' // source tracking
+      );
 
-      // Handle errors if needed
-      console.error('Subscription failed');
+      // Restart video before redirecting
+      restartVideo();
+      // Success - redirect to signup-watch-video page
+      router.push('/signup-watch-video');
+      return;
+
     } catch (error) {
-      console.error('Subscription error:', error);
+      console.error('N8N webhook error:', error);
+      // Note: This maintains existing error handling pattern
     } finally {
       setIsSubmitting(false);
     }

@@ -27,19 +27,30 @@ export default function VideoTimestampAction({
     e.preventDefault();
     if (!email) return;
 
+    // Validate email format
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!emailRegex.test(email)) {
+      console.error('Invalid email format');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name: '' }),
-      });
+      // Submit to N8N webhook with dual-endpoint fallback
+      const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
 
-      if (response.ok) {
-        router.push('/signup-watch-video');
-      }
+      await submitToN8nWebhook(
+        email,
+        '', // firstName - empty for this form
+        'video-popup-section' // source tracking
+      );
+
+      // Success - redirect to signup-watch-video page
+      router.push('/signup-watch-video');
+
     } catch (error) {
-      console.error('Subscription error:', error);
+      console.error('N8N webhook error:', error);
+      // Note: This component doesn't have error display UI, maintaining existing pattern
     } finally {
       setIsSubmitting(false);
     }
