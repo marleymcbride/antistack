@@ -32,8 +32,11 @@ export default function EmailCTA() {
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    console.log('📧 EMAIL CTA - Form submission started:', data);
+
     // Validate email manually
     if (!emailRegex.test(data.email)) {
+      console.log('❌ EMAIL CTA - Email validation failed:', data.email);
       setSubmitResult({
         success: false,
         message: "Please enter a valid email address"
@@ -41,12 +44,21 @@ export default function EmailCTA() {
       return;
     }
 
+    console.log('✅ EMAIL CTA - Email validation passed');
     setIsSubmitting(true);
     setSubmitResult(null);
 
     try {
+      console.log('🔄 EMAIL CTA - Importing N8N webhook client...');
       // Submit to N8N webhook with dual-endpoint fallback
       const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
+      console.log('✅ EMAIL CTA - N8N webhook client imported successfully');
+
+      console.log('🚀 EMAIL CTA - Calling submitToN8nWebhook with:', {
+        email: data.email,
+        firstName: '',
+        source: 'hero-section'
+      });
 
       await submitToN8nWebhook(
         data.email,
@@ -54,19 +66,26 @@ export default function EmailCTA() {
         'hero-section' // source tracking
       );
 
+      console.log('🎉 EMAIL CTA - N8N webhook submission successful!');
+      console.log('🔄 EMAIL CTA - Redirecting to /signup-watch-video...');
+
       // Success - redirect to signup-watch-video page
       router.push('/signup-watch-video');
       return;
 
     } catch (error) {
+      console.error('❌ EMAIL CTA - N8N webhook submission failed:', error);
+
       // Handle N8N webhook errors with professional messages
       const errorMessage = error instanceof Error ? error.message : 'An error occurred. Please try again later.';
+      console.log('📧 EMAIL CTA - Showing error message to user:', errorMessage);
 
       setSubmitResult({
         success: false,
         message: errorMessage,
       });
     } finally {
+      console.log('🏁 EMAIL CTA - Form submission completed, resetting loading state');
       setIsSubmitting(false);
     }
   };
