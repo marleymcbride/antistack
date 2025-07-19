@@ -80,15 +80,29 @@ export default function VideoForcedChoiceOverlay({
   }, [isVisible, onPauseVideo]);
 
   const handleMainAction = () => {
+    console.log('🎯 POPUP - handleMainAction called with redirectUrl:', redirectUrl);
+    console.log('🎯 POPUP - Current environment:', {
+      hostname: window.location.hostname,
+      origin: window.location.origin,
+      primary: process.env.NEXT_PUBLIC_N8N_PRIMARY_WEBHOOK,
+      fallback: process.env.NEXT_PUBLIC_N8N_FALLBACK_WEBHOOK
+    });
+
     if (redirectUrl) {
+      console.log('🎯 POPUP - Redirecting to:', redirectUrl);
+
       // Check if it's an internal path (starts with /) or external URL
       if (redirectUrl.startsWith('/')) {
+        console.log('🎯 POPUP - Internal navigation detected, using Next.js router');
         // Internal navigation - use Next.js router
         router.push(redirectUrl);
       } else {
+        console.log('🎯 POPUP - External URL detected, opening in new tab');
         // External URL - open in new tab
         window.open(redirectUrl, '_blank');
       }
+    } else {
+      console.warn('❌ POPUP - No redirectUrl provided!');
     }
     onMainAction();
   };
