@@ -63,9 +63,9 @@ export function useVideoForcedChoice(
           let workingTimeMethod: string | null = null;
 
           for (const method of timeMethodOptions) {
-            if (video[method] && typeof video[method] === 'function') {
+            if ((video as any)[method] && typeof (video as any)[method] === 'function') {
               try {
-                const testTime = video[method]();
+                const testTime = (video as any)[method]();
                 if (typeof testTime === 'number' && !isNaN(testTime)) {
                   console.log(`✅ Found working time method: ${method} = ${testTime}`);
                   workingTimeMethod = method;
@@ -89,8 +89,8 @@ export function useVideoForcedChoice(
           intervalId = setInterval(() => {
             try {
               // Use the working time method we found
-              if (video[workingTimeMethod] && typeof video[workingTimeMethod] === 'function') {
-                const time = video[workingTimeMethod]();
+              if ((video as any)[workingTimeMethod] && typeof (video as any)[workingTimeMethod] === 'function') {
+                const time = (video as any)[workingTimeMethod]();
 
                 // Validate the time value
                 if (typeof time === 'number' && !isNaN(time)) {
