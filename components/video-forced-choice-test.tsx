@@ -152,8 +152,8 @@ export default function VideoForcedChoiceTest() {
   const currentVariation = copyVariations.shocking; // ← Change this to test different versions
 
   const handleMainAction = () => {
-    console.log('Main action clicked! Variation:', Object.keys(copyVariations).find(key =>
-      copyVariations[key] === currentVariation
+    console.log('Main action clicked! Variation:', Object.keys(copyVariations).find((key) =>
+      copyVariations[key as keyof typeof copyVariations] === currentVariation
     ));
     // Additional tracking or analytics can go here
   };
@@ -166,7 +166,7 @@ export default function VideoForcedChoiceTest() {
         </h1>
         <p className="text-zinc-400 text-center mb-4">
           Currently Testing: <span className="text-yellow-400 font-bold">
-            {Object.keys(copyVariations).find(key => copyVariations[key] === currentVariation)?.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+            {Object.keys(copyVariations).find((key) => copyVariations[key as keyof typeof copyVariations] === currentVariation)?.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
           </span>
         </p>
         <p className="text-zinc-400 text-center mb-12">
