@@ -49,6 +49,25 @@ export default function EmailSignup() {
     setSubmitResult(null);
 
     try {
+      // Get current video time before redirecting (for users coming from video page)
+      let currentVideoTime = 0;
+      if (window.Wistia && window.Wistia.api) {
+        const videos = window.Wistia.api.all();
+        if (videos.length > 0) {
+          const video = videos[0];
+          if (video.time && typeof video.time === 'function') {
+            currentVideoTime = video.time();
+            console.log(`🎬 EMAIL SIGNUP - Saving video timestamp: ${currentVideoTime}s`);
+          }
+        }
+      }
+
+      // Store video timestamp in localStorage if available
+      if (currentVideoTime > 0) {
+        localStorage.setItem('videoResumeTime', currentVideoTime.toString());
+        console.log(`💾 EMAIL SIGNUP - Video time saved: ${currentVideoTime}s`);
+      }
+
       console.log('🔄 EMAIL SIGNUP - Importing N8N webhook client...');
       // Submit to N8N webhook with dual-endpoint fallback
       const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');

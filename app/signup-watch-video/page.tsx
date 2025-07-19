@@ -8,6 +8,21 @@ import SuccessPopup from "@/components/success-popup";
 
 export default function SignupWatchVideo() {
   const [showSuccessPopup, setShowSuccessPopup] = React.useState(true);
+  const [resumeTime, setResumeTime] = React.useState(0);
+
+  // Get stored video timestamp on page load
+  React.useEffect(() => {
+    const storedTime = localStorage.getItem('videoResumeTime');
+    if (storedTime) {
+      const timeInSeconds = parseFloat(storedTime);
+      if (timeInSeconds > 0) {
+        setResumeTime(timeInSeconds);
+        console.log(`📺 Resuming video from ${timeInSeconds}s`);
+        // Clear the stored time after using it
+        localStorage.removeItem('videoResumeTime');
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -24,7 +39,7 @@ export default function SignupWatchVideo() {
             {/* Success Message replacing Step 1 */}
             <div className="mt-8 mb-6 text-center">
               <p className="text-lg text-green-600">
-                <span className="font-bold">✅ You're In!</span> <span className="font-normal">Watch The Full Training</span>
+                <span className="font-bold">✅ Access Granted</span> <span className="font-normal">Continue Your Exclusive Training</span>
               </p>
             </div>
 
@@ -43,6 +58,7 @@ export default function SignupWatchVideo() {
                   videoUrl="https://fast.wistia.com/embed/medias/nnbkix8deu"
                   forcedChoiceConfig={null} // Disable forced choice since they already signed up
                   autoPlay={true}
+                  startTime={resumeTime} // Resume from where they left off
                   title=""
                 />
               </div>
@@ -116,5 +132,6 @@ export default function SignupWatchVideo() {
         </div>
       </section>
     </main>
+    </>
   );
 }
