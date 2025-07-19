@@ -263,7 +263,7 @@ export default function VideoForcedChoiceTest() {
           <div className="mt-6 p-4 bg-yellow-900/20 border border-yellow-500/20 rounded">
             <h4 className="text-yellow-400 font-bold mb-2">🎯 Current Test Results Tracking:</h4>
             <p className="text-zinc-300 text-sm">
-              <strong>Currently Testing:</strong> {Object.keys(copyVariations).find(key => copyVariations[key] === currentVariation)}
+              <strong>Currently Testing:</strong> {Object.keys(copyVariations).find(key => copyVariations[key as keyof typeof copyVariations] === currentVariation)}
             </p>
             <p className="text-zinc-400 text-xs mt-1">
               Check console logs for click tracking. Each variation logs which copy was clicked for conversion tracking.
