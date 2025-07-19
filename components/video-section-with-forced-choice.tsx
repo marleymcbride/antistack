@@ -14,6 +14,7 @@ interface VideoSectionWithForcedChoiceProps {
   className?: string;
   onMainAction?: () => void;
   autoPlay?: boolean; // New prop for auto-play
+  startTime?: number; // New prop for resuming video at specific time
 }
 
 export default function VideoSectionWithForcedChoice({
@@ -22,7 +23,8 @@ export default function VideoSectionWithForcedChoice({
   title = "Watch The Video",
   className = "",
   onMainAction,
-  autoPlay = true // Default to false
+  autoPlay = true, // Default to false
+  startTime = 0 // Default to start from beginning
 }: VideoSectionWithForcedChoiceProps) {
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(autoPlay); // Auto-load if autoPlay is true
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
@@ -35,6 +37,31 @@ export default function VideoSectionWithForcedChoice({
   } = useVideoForcedChoice(videoUrl, forcedChoiceConfig || null);
 
   const videoType = getVideoType(videoUrl);
+
+  // Seek to startTime when video loads (for Wistia)
+  React.useEffect(() => {
+    if (isVideoLoaded && startTime > 0 && videoType === 'wistia') {
+      const seekToTime = () => {
+        if (window.Wistia && window.Wistia.api) {
+          const videos = window.Wistia.api.all();
+          if (videos.length > 0) {
+            const video = videos[0];
+            console.log(`🎬 Seeking to ${startTime} seconds...`);
+            if (video.time && typeof video.time === 'function') {
+              video.time(startTime);
+              console.log(`✅ Video seeked to ${startTime}s`);
+            }
+          }
+        } else {
+          // Retry if Wistia API not ready
+          setTimeout(seekToTime, 500);
+        }
+      };
+
+      // Wait a moment for video to fully load before seeking
+      setTimeout(seekToTime, 1000);
+    }
+  }, [isVideoLoaded, startTime, videoType]);
 
   // Wistia script loading - CRITICAL for JavaScript API
   React.useEffect(() => {

@@ -8,6 +8,21 @@ import SuccessPopup from "@/components/success-popup";
 
 export default function SignupWatchVideo() {
   const [showSuccessPopup, setShowSuccessPopup] = React.useState(true);
+  const [resumeTime, setResumeTime] = React.useState(0);
+
+  // Get stored video timestamp on page load
+  React.useEffect(() => {
+    const storedTime = localStorage.getItem('videoResumeTime');
+    if (storedTime) {
+      const timeInSeconds = parseFloat(storedTime);
+      if (timeInSeconds > 0) {
+        setResumeTime(timeInSeconds);
+        console.log(`📺 Resuming video from ${timeInSeconds}s`);
+        // Clear the stored time after using it
+        localStorage.removeItem('videoResumeTime');
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -24,7 +39,7 @@ export default function SignupWatchVideo() {
             {/* Success Message replacing Step 1 */}
             <div className="mt-8 mb-6 text-center">
               <p className="text-lg text-green-600">
-                <span className="font-bold">✅ You're In!</span> <span className="font-normal">Watch The Full Training</span>
+                <span className="font-bold">✅ Access Granted</span> <span className="font-normal">Continue Your Exclusive Training</span>
               </p>
             </div>
 
@@ -33,7 +48,7 @@ export default function SignupWatchVideo() {
               How I tripled my energy without coffee, crazy supplements or spending my life in the gym
             </h1>
             <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
-              Watch the video to steal the full "Anti Stack" method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
+              Watch the video to steal the full &quot;Anti Stack&quot; method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
             </h2>
 
             {/* Real Wistia Video Container */}
@@ -43,6 +58,7 @@ export default function SignupWatchVideo() {
                   videoUrl="https://fast.wistia.com/embed/medias/nnbkix8deu"
                   forcedChoiceConfig={null} // Disable forced choice since they already signed up
                   autoPlay={true}
+                  startTime={resumeTime} // Resume from where they left off
                   title=""
                 />
               </div>
@@ -116,5 +132,6 @@ export default function SignupWatchVideo() {
         </div>
       </section>
     </main>
+    </>
   );
 }

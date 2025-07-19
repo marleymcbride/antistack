@@ -220,6 +220,25 @@ export default function Home() {
     setIsSubmitting(true);
 
     try {
+      // Get current video time before redirecting
+      let currentVideoTime = 0;
+      if (window.Wistia && window.Wistia.api) {
+        const videos = window.Wistia.api.all();
+        if (videos.length > 0) {
+          const video = videos[0];
+          if (video.time && typeof video.time === 'function') {
+            currentVideoTime = video.time();
+            console.log(`🎬 Saving video timestamp: ${currentVideoTime}s`);
+          }
+        }
+      }
+
+      // Store video timestamp in localStorage
+      if (currentVideoTime > 0) {
+        localStorage.setItem('videoResumeTime', currentVideoTime.toString());
+        console.log(`💾 Video time saved: ${currentVideoTime}s`);
+      }
+
       // Submit to N8N webhook with dual-endpoint fallback
       const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
 
@@ -229,8 +248,6 @@ export default function Home() {
         'main-page-section' // source tracking
       );
 
-      // Restart video before redirecting
-      restartVideo();
       // Success - redirect to signup-watch-video page
       router.push('/signup-watch-video');
       return;
