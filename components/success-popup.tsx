@@ -48,11 +48,7 @@ export default function SuccessPopup({ isVisible, onClose }: SuccessPopupProps) 
               <span className="text-2xl">✅</span>
             </div>
             <div className="flex-1">
-<<<<<<< HEAD
-              <p className="font-black text-xl mb-1">You&apos;re All Set!</p>
-=======
               <p className="font-black text-xl mb-1">You're All Set!</p>
->>>>>>> fc4dac54ac02cd3073d9f735a6bb2baaab343c48
               <p className="text-green-100 text-sm leading-relaxed mb-2">
                 Your exclusive training is unlocked below - continue where you left off
               </p>
