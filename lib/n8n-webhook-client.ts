@@ -34,6 +34,14 @@ export async function submitToN8nWebhook(
   firstName: string = '',
   source: string
 ): Promise<WebhookResponse> {
+  // Debug environment variables
+  console.log('🔍 Environment Debug:', {
+    PRIMARY_ENDPOINT,
+    FALLBACK_ENDPOINT,
+    env_PRIMARY: process.env.NEXT_PUBLIC_N8N_PRIMARY_WEBHOOK,
+    env_FALLBACK: process.env.NEXT_PUBLIC_N8N_FALLBACK_WEBHOOK
+  });
+
   // Validate inputs
   if (!email || !source) {
     throw new Error('Email and source are required');
@@ -45,9 +53,11 @@ export async function submitToN8nWebhook(
     throw new Error('Please enter a valid email address');
   }
 
-  // Validate environment variables
+  // Validate environment variables with detailed error
   if (!PRIMARY_ENDPOINT || !FALLBACK_ENDPOINT) {
-    throw new Error('N8N webhook endpoints not configured');
+    const errorMsg = `N8N webhook endpoints not configured. PRIMARY: ${PRIMARY_ENDPOINT || 'undefined'}, FALLBACK: ${FALLBACK_ENDPOINT || 'undefined'}`;
+    console.error('❌ Environment Error:', errorMsg);
+    throw new Error(errorMsg);
   }
 
   const payload: WebhookPayload = {
@@ -58,17 +68,31 @@ export async function submitToN8nWebhook(
 
   // Try primary endpoint first
   try {
+    console.log('🎯 Trying PRIMARY endpoint...');
     const response = await submitToN8nWebhookDirect(PRIMARY_ENDPOINT, payload);
+    console.log('🎉 PRIMARY endpoint SUCCESS:', response);
     return response;
   } catch (primaryError) {
-    console.warn('Primary N8N endpoint failed, trying fallback:', primaryError);
+    console.warn('❌ PRIMARY endpoint failed:', primaryError);
 
     // Try fallback endpoint
     try {
+      console.log('🎯 Trying FALLBACK endpoint...');
       const response = await submitToN8nWebhookDirect(FALLBACK_ENDPOINT, payload);
+      console.log('🎉 FALLBACK endpoint SUCCESS:', response);
       return response;
     } catch (fallbackError) {
-      console.error('Both N8N endpoints failed:', fallbackError);
+      console.error('❌ FALLBACK endpoint also failed:', fallbackError);
+      console.error('❌ BOTH ENDPOINTS FAILED - Summary:', {
+        primary: {
+          endpoint: PRIMARY_ENDPOINT,
+          error: primaryError instanceof Error ? primaryError.message : String(primaryError)
+        },
+        fallback: {
+          endpoint: FALLBACK_ENDPOINT,
+          error: fallbackError instanceof Error ? fallbackError.message : String(fallbackError)
+        }
+      });
 
       // Create comprehensive error for user
       const webhookError = new Error('Service temporarily unavailable. Please try again in a moment.') as WebhookError;
@@ -99,6 +123,7 @@ async function submitToN8nWebhookDirect(
     });
 
     console.log('📡 N8N response status:', response.status, response.statusText);
+    console.log('📡 N8N response headers:', Object.fromEntries(response.headers.entries()));
 
     // Handle non-200 responses
     if (!response.ok) {
@@ -107,17 +132,19 @@ async function submitToN8nWebhookDirect(
       // Try to get error details from response
       try {
         const errorData = await response.text();
-        console.log('❌ N8N error response:', errorData);
+        console.log('❌ N8N error response body:', errorData);
 
         // Try to parse as JSON first
         try {
           const errorJson = JSON.parse(errorData);
+          console.log('❌ N8N error JSON:', errorJson);
           if (errorJson.message) {
             errorMessage = errorJson.message;
           } else if (errorJson.error) {
             errorMessage = errorJson.error;
           }
         } catch (jsonError) {
+          console.log('❌ Error response not JSON, using text:', errorData);
           // If not JSON, use the text response
           if (errorData.length > 0 && errorData.length < 200) {
             errorMessage = errorData;
@@ -125,18 +152,21 @@ async function submitToN8nWebhookDirect(
         }
       } catch (textError) {
         // Fallback to status text if we can't read response
-        console.log('Could not read error response:', textError);
+        console.log('❌ Could not read error response:', textError);
       }
 
-      throw new Error(errorMessage);
+      const detailedError = new Error(`${endpoint} failed: ${errorMessage}`);
+      console.log('❌ Throwing detailed error:', detailedError.message);
+      throw detailedError;
     }
 
     // Parse successful response
     let result: WebhookResponse;
     try {
       const responseText = await response.text();
-      console.log('✅ N8N success response:', responseText);
+      console.log('✅ N8N success response text:', responseText);
       result = JSON.parse(responseText);
+      console.log('✅ N8N success response parsed:', result);
     } catch (jsonError) {
       console.error('❌ Failed to parse N8N response as JSON:', jsonError);
       throw new Error('Invalid response format from webhook');

@@ -19,7 +19,7 @@ const copyVariations = {
     triggerTime: 10,
     overlayText: "Tired of DRAG ENERGY? That 3pm crash, caffeine dependency, constant fatigue?",
     mainButtonText: "UNLOCK GLIDE ENERGY →",
-    redirectUrl: "https://your-sales-page.com"
+    redirectUrl: "/blueprint-from-video"
   },
 
   // Variation B: 4% Trap (Scott's current situation) - SHORTENED
@@ -27,7 +27,7 @@ const copyVariations = {
     triggerTime: 10,
     overlayText: "You're health-conscious, hit the gym, watch your diet... but stuck in the 4% TRAP.",
     mainButtonText: "BREAK INTO THE 1% →",
-    redirectUrl: "https://your-sales-page.com"
+    redirectUrl: "/blueprint-from-video"
   },
 
   // Variation C: Anti-Stack Direct (Solution focused) - PUNCHY
