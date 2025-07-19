@@ -12,6 +12,7 @@ declare global {
           play: () => void;
           pause: () => void;
           hashedId: () => string;
+          time: (seconds?: number) => number; // Get or set current time
         };
         all(): Array<{
           bind: (event: string, callback: (time: number) => void) => void;
@@ -20,6 +21,7 @@ declare global {
           play: () => void;
           pause: () => void;
           hashedId: () => string;
+          time: (seconds?: number) => number; // Get or set current time
         }>;
       };
     };
