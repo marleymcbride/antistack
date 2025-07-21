@@ -14,8 +14,8 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 24,
-          background: '#dc2626',
+          fontSize: 20,
+          background: '#000000',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -23,9 +23,10 @@ export default function Icon() {
           justifyContent: 'center',
           color: 'white',
           fontWeight: 'bold',
+          letterSpacing: '-1px',
         }}
       >
-        L
+        AS
       </div>
     ),
     {
