@@ -1,8 +1,8 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
@@ -121,7 +121,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-            The simple 3-step morning flow to wake up feeling amazing without caffeine
+            The simple 3-step morning flow to wake up feeling energized without caffeine
             </span>
           </li>
           <li className="flex items-start">
@@ -141,7 +141,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              The process to reset your hormones and triple your focus without sunning your balls, biohacks or shitty &apos;T boosters&apos;
+              The full blueprint to reset your hormones and triple your focus without sunning your balls, biohacks or shitty &apos;T boosters&apos;
             </span>
           </li>
         </ul>

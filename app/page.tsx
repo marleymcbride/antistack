@@ -493,7 +493,7 @@ export default function Home() {
         <div className="container px-4 mx-auto max-w-4xl text-center">
           {/* Narrower container just for the headline */}
           <div className="mx-auto max-w-lg">
-            <p className="mb-10 text-2xl font-lg">Want the entire Limitless Systems to reach the top 1% over the next 90 days?</p>
+            <p className="mb-10 text-2xl font-lg">Want the entire Limitless Systems to reach the top 1% in the next 90 days?</p>
           </div>
 
           {/* Wider container for the button */}
