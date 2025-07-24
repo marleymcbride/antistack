@@ -19,7 +19,7 @@ export default function SimpleTestimonials() {
 
         <div className="p-4 rounded-lg bg-zinc-800/80">
           <p className="mb-3 text-sm text-white">&quot;Noticed more energy coming in, sleep has been better and I&apos;m feeling more focused.&quot;</p>
-          <p className="text-xs text-zinc-300">— Laurence, 52, Zurich</p>
+          <p className="text-xs text-zinc-300">— Laurence, 52, ZH</p>
         </div>
       </div>
     </>
