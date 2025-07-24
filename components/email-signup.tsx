@@ -112,18 +112,8 @@ export default function EmailSignup() {
   return (
     <>
       {/* Benefits Box */}
-      <div className="max-w-2xl p-6 mx-auto mt-0 mb-6 text-left rounded-lg bg-zinc-800/70">
+      <div className="p-6 mx-auto mt-0 mb-6 max-w-2xl text-left rounded-lg bg-zinc-800/70">
         <ul className="space-y-4">
-          <li className="flex items-start">
-            <span className="flex-shrink-0 mt-1 mr-3 text-left text-red-500">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="16" height="16" fill="currentColor" />
-              </svg>
-            </span>
-            <span>
-            The exact method to triple your energy in 3 weeks (no caffeine, no supplements, no bullshit)
-            </span>
-          </li>
           <li className="flex items-start">
             <span className="flex-shrink-0 mt-1 mr-3 text-left text-red-500">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +131,17 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-              How to reset your hormones and triple your focus without sunning your balls, biohacks or &apos;T boosters&apos;
+            The EXACT protocol to triple your energy in only 3 weeks
+            </span>
+          </li>
+          <li className="flex items-start">
+            <span className="flex-shrink-0 mt-1 mr-3 text-left text-red-500">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="16" fill="currentColor" />
+              </svg>
+            </span>
+            <span>
+              The process to reset your hormones and triple your focus without sunning your balls, biohacks or shitty &apos;T boosters&apos;
             </span>
           </li>
         </ul>
@@ -159,11 +159,11 @@ export default function EmailSignup() {
 
       {/* Quick Note on getting the email */}
       <p className="mt-10 mb-10 text-center text-zinc-400">
-        It&apos;s completely free, just give me your best email address and I&apos;ll send it your way.
+      FREE for the first 100 only. Drop your email below and I&apos;ll send it over:
       </p>
 
       {/* Email Form */}
-      <div className="max-w-md mx-auto mb-8">
+      <div className="mx-auto mb-8 max-w-md">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <Input
             {...register('email', {
@@ -183,7 +183,7 @@ export default function EmailSignup() {
           )}
           <Button
             type="submit"
-            className="w-full h-16 p-5 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800"
+            className="p-5 w-full h-16 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Processing...' : 'Send me it over'}
@@ -194,7 +194,7 @@ export default function EmailSignup() {
         <div className="mt-5">
           <Button
             variant="outline"
-            className="w-full h-16 p-5 text-lg font-bold text-white bg-transparent border border-red-700 rounded hover:bg-red-900/20"
+            className="p-5 w-full h-16 text-lg font-bold text-white bg-transparent rounded border border-red-700 hover:bg-red-900/20"
           >
             JOIN LIMITLESS
           </Button>
@@ -203,7 +203,7 @@ export default function EmailSignup() {
 
       {/* Personal Note */}
       <p className="mt-6 text-center text-zinc-400">
-        I reply to every email personally. No bots or VA. Just yours truly.
+        (I reply to every email personally. No bots or VA. Just yours truly.)
       </p>
     </>
   );

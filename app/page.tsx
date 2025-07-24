@@ -372,11 +372,11 @@ export default function Home() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-5.3xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[70%] mx-auto">
-            How I tripled my energy without coffee, crazy supplements or spending my life in the gym
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-4xl font-extrabold tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[70%] mx-auto">
+            The Anti Stack: How I tripled my energy without coffee, crazy supplements or spending my life in the gym
           </h1>
           <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
-            Watch the video to steal the full &quot;Anti Stack&quot; method I used to completely cure my chronic tiredness without a single cup of coffee for 386 days, 0 expensive supplements stacks, and only training 2 days per week:
+            Watch the video to learn the exact method I used to completely cure my chronic tiredness WITHOUT a single cup of coffee for 472 days, 0 expensive supplements stacks, or training more than twice per week:
           </h2>
 
           {/* Video Container - NO GAP between headline and video */}
@@ -400,7 +400,7 @@ export default function Home() {
         <section className="w-full border-t border-black">
           <div className="pt-10 text-center">
             <p className="text-lg text-red-500">
-              <span className="font-bold">Step 2:</span> Claim Your Offer
+              <span className="font-bold">Step 2:</span> Claim Your Offer (Limited time)
             </p>
           </div>
         </section>
