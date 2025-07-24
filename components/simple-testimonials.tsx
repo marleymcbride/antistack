@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function SimpleTestimonials() {
   return (
@@ -8,19 +7,19 @@ export default function SimpleTestimonials() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="p-4 rounded-lg bg-zinc-800/80">
           <p className="mb-3 text-sm text-white">
-            &quot;Down 22lbs. Haven&apos;t touched caffeine in 6 weeks. Closing my biggest deals at 8pm.&quot;
+            &quot;It&apos;s mad to think how much more energy you have. I was feeling good, but now it&apos;s 10 fold.&quot;
           </p>
-          <p className="text-xs text-zinc-300">- Investment Banker, NYC</p>
+          <p className="text-xs text-zinc-300">— Luis, Energy Sector</p>
         </div>
 
         <div className="p-4 rounded-lg bg-zinc-800/80">
-          <p className="mb-3 text-sm text-white">&quot;Energy at 6pm matches my old 9am. Wife thinks I&apos;m 25 again.&quot;</p>
-          <p className="text-xs text-zinc-300">- Tech CEO, 42</p>
+          <p className="mb-3 text-sm text-white">&quot;I don&apos;t feel I&apos;ve ever had this much natural energy before than in the last few weeks.&quot;</p>
+          <p className="text-xs text-zinc-300">— Aaron, Business Exec, 42</p>
         </div>
 
         <div className="p-4 rounded-lg bg-zinc-800/80">
-          <p className="mb-3 text-sm text-white">&quot;Saved $400/month on supplements. Feel better than I did in college.&quot;</p>
-          <p className="text-xs text-zinc-300">- Sales Director, Chicago</p>
+          <p className="mb-3 text-sm text-white">&quot;Noticed more energy coming in, sleep has been better and I&apos;m feeling more focused.&quot;</p>
+          <p className="text-xs text-zinc-300">— Laurence, 52, Zurich</p>
         </div>
       </div>
     </>
