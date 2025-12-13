@@ -131,7 +131,7 @@ export default function EmailSignup() {
               </svg>
             </span>
             <span>
-            The EXACT protocol to triple your energy in only 3 weeks
+            The EXACT protocol to jump out of bed in only 3 weeks
             </span>
           </li>
           <li className="flex items-start">

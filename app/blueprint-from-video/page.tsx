@@ -20,7 +20,7 @@ export default function BlueprintFromVideoPage() {
         <section className="pt-8 pb-16 w-full text-white">
           <div className="container px-4 mx-auto max-w-4xl text-center">
             {/* Main CTA Headline */}
-            <h2 className="mb-4 text-5xl font-bold text-center">3X Your Energy in 3 Weeks</h2>
+            <h2 className="mb-4 text-5xl font-bold text-center">3 Weeks to Jumping Out Of Bed</h2>
 
             {/* Sub-eyebrow */}
             <p className="mb-8 text-3.2xl md:text-5xl lg:text-6xl xl:text-lg text-center">
