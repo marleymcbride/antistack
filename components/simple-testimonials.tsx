@@ -9,7 +9,7 @@ export default function SimpleTestimonials() {
           <p className="mb-3 text-sm text-white">
             &quot;It&apos;s mad to think how much more energy you have. I was feeling good, but now it&apos;s 10 fold.&quot;
           </p>
-          <p className="text-xs text-zinc-300">— Luis, Energy Sector</p>
+          <p className="text-xs text-zinc-300">— Luis, Energy Sector, UK</p>
         </div>
 
         <div className="p-4 rounded-lg bg-zinc-800/80">
