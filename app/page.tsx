@@ -372,7 +372,7 @@ export default function Home() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-black text-center mb-6 px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[70%] mx-auto">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-black text-center mb-6 px-4 max-w-[95%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
             The Anti Stack: How I tripled my energy without coffee, crazy supplements or spending my life in the gym
           </h1>
           <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
