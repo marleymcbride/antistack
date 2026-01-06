@@ -21,7 +21,7 @@ export default function BlueprintPage() {
             <div className="p-5 mx-auto max-w-5xl rounded-xl border backdrop-blur bg-zinc-800/50 border-zinc-700/50 md:p-6">
               <div className="text-center text-white">
                 {/* Main CTA Headline */}
-                <h1 className="mb-3 text-3xl font-bold md:text-4xl">3 Weeks to Jumping Out Of Bed</h1>
+                <h1 className="mb-3 text-4xl font-bold md:text-5xl">3 Weeks to Jumping Out Of Bed</h1>
 
                 {/* Sub-eyebrow */}
                 <p className="mb-5 text-sm md:text-base text-zinc-300">
