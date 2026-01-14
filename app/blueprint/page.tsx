@@ -1,7 +1,7 @@
 import EmailCTA from "@/components/email-cta";
 import EmailSignup from "@/components/email-signup";
-import SimpleTestimonials from "@/components/simple-testimonials";
 import TestimonialSection from "@/components/testimonial-section";
+import SystemUnlocks from "@/components/system-unlocks";
 
 export default function BlueprintPage() {
   return (
@@ -21,7 +21,7 @@ export default function BlueprintPage() {
             <div className="p-5 mx-auto max-w-5xl rounded-xl border backdrop-blur bg-zinc-800/50 border-zinc-700/50 md:p-6">
               <div className="text-center text-white">
                 {/* Main CTA Headline */}
-                <h1 className="mb-3 text-5xl font-bold md:text-6xl">3 Weeks to Jumping Out Of Bed</h1>
+                <h1 className="mb-3 text-6xl font-bold md:text-7xl lg:text-8xl">3 Weeks to Jumping Out Of Bed</h1>
 
                 {/* Sub-eyebrow */}
                 <p className="mb-5 text-sm md:text-base text-zinc-300">
@@ -35,56 +35,10 @@ export default function BlueprintPage() {
         </section>
       </div>
 
-      {/* What high performers are saying - SOFT GREY SECTION */}
-      <section className="pt-14 pb-8 w-full text-zinc-900" style={{backgroundColor: '#f4f4f5'}}>
-        <div className="px-4 mx-auto max-w-2xl">
-          <SimpleTestimonials />
-        </div>
-      </section>
-
       {/* What this system unlocks - SOFT GREY SECTION */}
-      <section className="pt-6 pb-0 w-full text-black" style={{backgroundColor: '#f4f4f5'}}>
-        <div className="px-4 mx-auto mb-8 max-w-2xl">
-          <h3 className="mb-6 text-2xl font-bold text-center">What this system unlocks:</h3>
-
-          <div className="p-6 mb-10 rounded-lg bg-zinc-800/95">
-            <ul className="space-y-6">
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold text-white">Master The Limitless Morning™ (Days 1-7)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Discover the exact 5-minute energy sequence that makes cocaine feel like a J20.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold text-white">Outdoctrinate with The Anti-Stack™ (Days 8-14)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Learn the system that gives you all-day energy from within and makes &apos;supplement stacks&apos; obsolete.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold text-white">Unlock the The Natty Sweet Spot™ (Days 15-21)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  The system to build a leaner, stronger physique in 2 sessions a week, your mental peace reduces while your testosterone skyrockets — the great crossover of the male life.
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Slanted divider */}
-        <div className="relative h-20" style={{backgroundColor: '#f4f4f5'}}>
-          <div className="absolute bottom-0 left-0 w-full h-20 bg-zinc-900 slanted-divider"></div>
-        </div>
-      </section>
+      <div style={{backgroundColor: '#f4f4f5'}}>
+        <SystemUnlocks />
+      </div>
 
       {/* Cost question and email form */}
       <section className="py-14 w-full text-white bg-zinc-900">

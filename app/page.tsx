@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import VideoSectionWithForcedChoice from "@/components/video-section-with-forced-choice";
 import EmailCTA from "@/components/email-cta";
 import EmailSignup from "@/components/email-signup";
-import SimpleTestimonials from "@/components/simple-testimonials";
 import TestimonialSection from "@/components/testimonial-section";
 import ProofSection from "@/components/proof-section";
+import SystemUnlocks from "@/components/system-unlocks";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+// Create alias for EmailSignup without testimonials
+const EmailSignupWithoutTestimonials = EmailSignup;
 
 // ===== FORCED CHOICE COPY VARIATIONS =====
 // Change the variation below to test different copy on your main page
@@ -372,14 +375,18 @@ export default function Home() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-black text-center mb-6 px-4 max-w-[95%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
+          <h1 className="text-4xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-black text-center mb-6 px-4 max-w-[95%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
             The Anti Stack: How I tripled my energy without coffee, crazy supplements or spending my life in the gym
           </h1>
-          <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-black text-center mb-8 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
+
+          <h2 className="text-lg md:text-xl lg:text-xl xl:text-xl font-medium tracking-tight text-black text-center mt-8 mb-8 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
             Watch the video to learn the exact method I used to completely cure my chronic tiredness WITHOUT a single cup of coffee for 472 days, 0 expensive supplements stacks, or training more than twice per week:
           </h2>
+        
+      
 
-          {/* Video Container - NO GAP between headline and video */}
+
+          {/* Video Container - Moved above subheadline */}
           <div className="px-4 mx-auto mt-8 w-full max-w-4xl lg:max-w-3xl">
             <div className="relative mb-4 w-full lg:mb-4" data-video-container="true">
               <VideoSectionWithForcedChoice
@@ -391,9 +398,8 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
-      </section>
-
+          </div>
+          </section>
       {/* Black Sections Container - Critical for no gaps */}
       <div className="w-full bg-zinc-900">
         {/* Step 2 Header - Black Bar */}
@@ -416,66 +422,59 @@ export default function Home() {
               Join 742+ high-performers using this 21-day system getting:
             </p>
 
-            <EmailSignup />
+            <EmailSignupWithoutTestimonials />
           </div>
         </section>
       </div>
 
-      {/* What high performers are saying - LIGHTER GRAY SECTION */}
-      <section className="pt-14 pb-8 w-full text-white bg-zinc-800">
-        <div className="px-4 mx-auto max-w-2xl">
-          <SimpleTestimonials />
+      {/* Text Testimonials - FULL WIDTH */}
+      <section className="pt-6 pb-24 text-white mb-20w-full bg-zinc-900">
+        <div className="px-[3.5%]">
+          <div className="p-10 rounded-2xl shadow-xl bg-zinc-800/95">
+            <div className="grid grid-cols-1 gap-8 md:gap-12 md:grid-cols-3">
+              <div>
+                <img
+                  src="/images/Display photos/luis2.jpeg"
+                  alt="Luis"
+                  className="object-cover mx-auto mb-4 w-24 h-24 rounded-full ring-4 ring-[#18181B]"
+                />
+                <p className="mb-6 text-xl font-normal leading-loose text-white">
+                  &quot;It&apos;s mad to think how much more energy you have. I was feeling good, but now it&apos;s 10 fold.&quot;
+                </p>
+                <p className="text-lg font-semibold text-zinc-200">— Lewis, Energy Sector</p>
+              </div>
+
+              <div>
+                <img
+                  src="/images/Display photos/aaron.png"
+                  alt="Aaron"
+                  className="object-cover mx-auto mb-4 w-24 h-24 rounded-full ring-4 ring-[#18181B]"
+                />
+                <p className="mb-6 text-xl font-normal leading-loose text-white">&quot;I don&apos;t feel I&apos;ve ever had this much natural energy before than in the last few weeks.&quot;</p>
+                <p className="text-lg font-semibold text-zinc-200">— Aaron, Business Exec</p>
+              </div>
+
+              <div>
+                <img
+                  src="/images/Display photos/laurence.JPG"
+                  alt="Laurence"
+                  className="object-cover mx-auto mb-4 w-24 h-24 rounded-full ring-4 ring-[#18181B]"
+                />
+                <p className="mb-6 text-xl font-normal leading-loose text-white">&quot;Noticed more energy coming in, sleep has been better and I&apos;m feeling more focused.&quot;</p>
+                <p className="text-lg font-semibold text-zinc-200">— Laurence, 52, ZH</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* What this system unlocks - LIGHTER GRAY SECTION */}
-      <section className="pt-6 pb-0 w-full text-white bg-zinc-800">
-        <div className="px-4 mx-auto mb-8 max-w-xl">
-          <h3 className="mb-6 text-2xl font-bold text-center">What this system unlocks:</h3>
-
-          <div className="p-6 mb-10 rounded-lg bg-zinc-900/70">
-            <ul className="space-y-6">
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Master The Limitless Morning™ (Days 1-7)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Discover the exact 5-minute energy sequence that makes cocaine feel like a J20.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Outdoctrinate with The Anti-Stack™ (Days 8-14)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Learn the system that gives you all-day energy from within and makes &apos;supplement stacks&apos; obsolete.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Unlock the The Natty Sweet Spot™ (Days 15-21)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  The system to build a leaner, stronger physique in 2 sessions a week, your mental peace reduces while your testosterone skyrockets — the great crossover of the male life.
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Slanted divider */}
-        <div className="relative h-20 bg-zinc-800">
-          <div className="absolute bottom-0 left-0 w-full h-20 bg-zinc-900 slanted-divider"></div>
-        </div>
-      </section>
+      <SystemUnlocks />
 
       {/* Cost question and email form */}
       <section className="py-14 w-full text-white bg-zinc-900">
         <div className="px-4 mx-auto mb-10 max-w-xl text-center">
-          <h3 className="mt-2 mb-8 text-2xl font-bold leading-snug 0">
+          <h3 className="mt-2 mb-8 text-3xl font-bold leading-snug 0">
             How much is waking up with no energy every morning costing you?
           </h3>
 
@@ -489,11 +488,11 @@ export default function Home() {
       <TestimonialSection />
 
       {/* Ready to go faster - Moved to bottom with dark background */}
-      <section className="py-16 w-full text-white bg-zinc-900">
+      <section className="py-24 w-full text-white bg-zinc-900">
         <div className="container px-4 mx-auto max-w-4xl text-center">
           {/* Narrower container just for the headline */}
-          <div className="mx-auto max-w-lg">
-            <p className="mb-10 text-2xl font-lg">Want the entire Limitless Systems to reach the top 1% in the next 90 days?</p>
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-10 text-3xl text-bold font-lg">Want the shortcut to the EXACT path to reach your ultimate male form in 2026?</p>
           </div>
 
           {/* Wider container for the button */}

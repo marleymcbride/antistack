@@ -2,9 +2,9 @@
 
 import React from 'react';
 import VideoSectionWithForcedChoice from "@/components/video-section-with-forced-choice";
-import SimpleTestimonials from "@/components/simple-testimonials";
 import TestimonialSection from "@/components/testimonial-section";
 import SuccessPopup from "@/components/success-popup";
+import SystemUnlocks from "@/components/system-unlocks";
 
 export default function SignupWatchVideo() {
   const [showSuccessPopup, setShowSuccessPopup] = React.useState(true);
@@ -44,7 +44,7 @@ export default function SignupWatchVideo() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-black text-center mb-6 px-4 max-w-[95%] sm:max-w-[90%] md:max-w-[70%] mx-auto">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-black text-center mb-6 px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[70%] mx-auto">
               How I tripled my energy without coffee, crazy supplements or spending my life in the gym
             </h1>
             <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-black text-center mb-6 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
@@ -66,51 +66,8 @@ export default function SignupWatchVideo() {
           </div>
         </section>
 
-      {/* What high performers are saying - LIGHTER GRAY SECTION */}
-      <section className="w-full pb-8 text-white bg-zinc-800 pt-14">
-        <div className="max-w-2xl px-4 mx-auto">
-          <SimpleTestimonials />
-        </div>
-      </section>
-
       {/* What this system unlocks - LIGHTER GRAY SECTION */}
-      <section className="w-full pt-6 pb-16 text-white bg-zinc-800">
-        <div className="max-w-xl px-4 mx-auto mb-8">
-          <h3 className="mb-6 text-2xl font-bold text-center">What this system unlocks:</h3>
-
-          <div className="p-6 mb-10 rounded-lg bg-zinc-900/70">
-            <ul className="space-y-6">
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Master The Limitless Morning™ (Days 1-7)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Discover the exact 5-minute energy sequence that makes cocaine feel like a J20.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Outdoctrinate with The Anti-Stack™ (Days 8-14)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Learn the system that gives you all-day energy from within and makes &apos;supplement stacks&apos; obsolete.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Unlock the The Natty Sweet Spot™ (Days 15-21)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  The system to build a leaner, stronger physique in 2 sessions a week, your mental peace reduces while your testosterone skyrockets — the great crossover of the male life.
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <SystemUnlocks />
 
       {/* Testimonials Section - Light */}
       <TestimonialSection />

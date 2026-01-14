@@ -1,7 +1,7 @@
 import EmailCTA from "@/components/email-cta";
 import EmailSignup from "@/components/email-signup";
-import SimpleTestimonials from "@/components/simple-testimonials";
 import TestimonialSection from "@/components/testimonial-section";
+import SystemUnlocks from "@/components/system-unlocks";
 
 export default function Blueprint1Page() {
   return (
@@ -24,56 +24,8 @@ export default function Blueprint1Page() {
         </section>
       </div>
 
-      {/* What high performers are saying - LIGHTER GRAY SECTION */}
-      <section className="w-full pb-8 text-white bg-zinc-800 pt-14">
-        <div className="max-w-2xl px-4 mx-auto">
-          <SimpleTestimonials />
-        </div>
-      </section>
-
       {/* What this system unlocks - LIGHTER GRAY SECTION */}
-      <section className="w-full pt-6 pb-0 text-white bg-zinc-800">
-        <div className="max-w-xl px-4 mx-auto mb-8">
-          <h3 className="mb-6 text-2xl font-bold text-center">What this system unlocks:</h3>
-
-          <div className="p-6 mb-10 rounded-lg bg-zinc-900/70">
-            <ul className="space-y-6">
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Master The Limitless Morning™ (Days 1-7)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Discover the exact 5-minute energy sequence that makes cocaine feel like a J20.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Outdoctrinate with The Anti-Stack™ (Days 8-14)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  Learn the system that gives you all-day energy from within and makes &apos;supplement stacks&apos; obsolete.
-                </p>
-              </li>
-              <li className="flex flex-col">
-                <div className="flex items-start mb-1">
-                  <span className="mr-2 text-red-500">✓</span>
-                  <span className="font-bold">Unlock the The Natty Sweet Spot™ (Days 15-21)</span>
-                </div>
-                <p className="pl-6 text-sm text-zinc-300">
-                  The system to build a leaner, stronger physique in 2 sessions a week, your mental peace reduces while your testosterone skyrockets — the great crossover of the male life.
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Slanted divider */}
-        <div className="relative h-20 bg-zinc-800">
-          <div className="absolute bottom-0 left-0 w-full h-20 bg-zinc-900 slanted-divider"></div>
-        </div>
-      </section>
+      <SystemUnlocks />
 
       {/* Cost question and email form */}
       <section className="w-full text-white py-14 bg-zinc-900 ">
