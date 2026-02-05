@@ -11,7 +11,7 @@ export default function BlueprintPage() {
       <div className="w-full bg-neutral-900/60">
         {/* Email Signup Section */}
         <section className="pt-20 pb-16 w-full text-white">
-          <div className="container px-4 mx-auto max-w-4xl">
+          <div className="container px-4 mx-auto max-w-4xl w-[85%]">
             <EmailSignup />
           </div>
         </section>

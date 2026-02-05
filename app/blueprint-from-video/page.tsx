@@ -22,7 +22,7 @@ export default function BlueprintFromVideoPage() {
 
         {/* Email Signup Section - Added from main page */}
         <section className="pt-8 pb-16 w-full text-white">
-          <div className="container px-4 mx-auto max-w-4xl">
+          <div className="container px-4 mx-auto max-w-4xl w-[85%]">
             <EmailSignupWithoutTestimonials />
           </div>
         </section>

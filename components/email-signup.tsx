@@ -175,27 +175,32 @@ export default function EmailSignup() {
   return (
     <>
       {/* Two Column Layout - 60/40 Split - Everything Left, Image Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr] pb-16 gap-8 md:gap-12 lg:gap-16 items-start mt-8 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr] pb-16 gap-8 md:gap-12 lg:gap-16 items-start mt-8 lg:mb-8">
         {/* Left Column - All Content */}
         <div className="pt-0 space-y-5">
           {/* Main CTA Headline */}
-          <h2 className="text-xl font-thin leading-none text-center lg:text-left text-[39px] md:text-[44px] lg:text-[50px] ">
+          <h2 className="text-xl font-thin leading-none text-left lg:text-left text-[50px] md:text-[44px] lg:text-[50px] ">
             3 Weeks to Jumping Out Of Bed
           </h2>
 
-          {/* Sub-eyebrow 
-          <p className="text-base text-center lg:text-left md:text-base lg:text-lg">
+          {/* Sub-eyebrow - Desktop only COMMENTED OUT NOT IN USE
+          <p className="hidden text-base text-left lg:block lg:text-base md:text-base lg:text-lg">
             Join 742+ other elite performers getting:
           </p> */}
 
-          {/* Benefits Box */}
-          <div className="px-6 py-10 mx-5 -ml-0 rounded-lg mtext-left left bg-zinc-800/70">
-            <h4 className="mb-6 text-base font-semibold leading-relaxed md:text-lg lg:text-[19px]">
+          {/* Mobile-only subheading */}
+          <p className="block py-3 text-lg font-normal leading-relaxed text-left lg:hidden text-zinc-300">
+            Master the simple lifestyle-first health system to get boundless energy every morning in 21 days with the Anti-Stack system
+          </p>
+
+          {/* Benefits Box - Desktop only (show on left column) */}
+          <div className="hidden px-6 py-10 mx-5 -ml-0 rounded-lg lg:block mtext-left left bg-zinc-800/70">
+            <h4 className="mb-4 text-sm font-semibold leading-relaxed md:text-sm lg:text-[19px] lg:mb-6">
               A daily 3-minute read straight to your inbox
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <span className="flex-shrink-0 self-center mr-3 text-left text-red-500">
+                <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
                   <svg
                     width="16"
                     height="16"
@@ -218,7 +223,7 @@ export default function EmailSignup() {
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 self-center mr-3 text-left text-red-500">
+                <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
                   <svg
                     width="16"
                     height="16"
@@ -240,7 +245,7 @@ export default function EmailSignup() {
                 </span>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 self-center mr-3 text-left text-red-500">
+                <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
                   <svg
                     width="16"
                     height="16"
@@ -278,16 +283,16 @@ export default function EmailSignup() {
             </div>
           )}
 
-          {/* Quick Note on getting the email */}
-          <div className="text-center lg:text-auto lg:-ml-4">
+          {/* Quick Note on getting the email - Desktop only */}
+          <div className="hidden text-center lg:block lg:mx-auto lg:-ml-4">
             <p className="text-sm text-zinc-400 md:text-base">
               FREE for the first 100. Drop your email and I&apos;ll send
               it over:
             </p>
           </div>
 
-          {/* Email Form - Mobile */}
-          <div className="mx-auto max-w-[290px] lg:mx-center lg:max-w-[96%] lg:w-96">
+          {/* Email Form */}
+          <div className="mx-auto max-w-[290px] lg:mx-auto lg:max-w-[96%] lg:w-96">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
               <Input
                 {...register("email", {
@@ -318,15 +323,101 @@ export default function EmailSignup() {
               </Button>
             </form>
           </div>
+
+          {/* Quick Note on getting the email - Mobile only, UNDERNEATH form */}
+          <div className="block text-center lg:hidden">
+            <p className="text-sm text-zinc-400">
+              FREE for the first 100. Drop your email and I&apos;ll send
+              it over:
+            </p>
+          </div>
         </div>
 
         {/* Right Column - Book Mockup Image */}
-        <div className="flex justify-center items-center pt-0">
+        <div className="flex flex-col justify-center items-center pt-0 space-y-3">
           <img
             src="/images/3WTJOOB - Book mockup.jpg"
             alt="3 Weeks to Jumping Out Of Bed - Book Mockup"
             className="object-contain w-[112%] max-w-md h-auto rounded-lg shadow-2xl"
           />
+
+          {/* Benefits Box - Mobile only (under image) */}
+          <div className="block px-5 py-12 -mx-4 rounded-lg lg:hidden bg-zinc-800/70">
+            <h4 className="mx-auto mb-4 ml-6 text-lg font-semibold leading-relaxed">
+              A daily 3-minute read straight to your inbox
+            </h4>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20 6L9 17L4 12"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span className="text-sm leading-relaxed">
+                  The simple 3-step morning flow to wake up feeling energized
+                  without caffeine
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20 6L9 17L4 12"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span className="text-sm leading-relaxed">
+                  The EXACT protocol to jump out of bed in only 3 weeks
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20 6L9 17L4 12"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span className="text-sm leading-relaxed">
+                  The full blueprint to reset your hormones and triple your
+                  focus without sunning your balls, biohacks or &apos;T
+                  boosters&apos;
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 

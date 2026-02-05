@@ -193,7 +193,7 @@ export default function EmailCTA() {
             className="w-full p-4 mb-8 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800 h-15"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Processing...' : 'START MY 3-WEEK TRANSFORMATION'}
+            {isSubmitting ? 'Processing...' : 'Send me Day 1'}
           </Button>
         </form>
 
@@ -245,7 +245,7 @@ export default function EmailCTA() {
             className="p-5 w-full h-16 text-lg font-bold text-white bg-red-700 rounded hover:bg-red-800"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Processing...' : 'Send me it over'}
+            {isSubmitting ? 'Processing...' : 'Send me Day 1'}
           </Button>
         </form>
 
