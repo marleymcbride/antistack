@@ -58,7 +58,7 @@ export default function FinalCTAButton() {
       disabled={isSubmitting}
       className="p-5 w-full text-xl font-bold text-white bg-red-700 rounded hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      {isSubmitting ? 'Processing...' : 'Show me how'}
+      {isSubmitting ? 'Processing...' : 'Work with Marley'}
     </button>
   );
 }

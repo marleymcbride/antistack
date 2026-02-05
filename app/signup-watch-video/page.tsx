@@ -87,7 +87,7 @@ export default function SignupWatchVideo() {
       <TestimonialSection />
 
       {/* Ready to go faster - Moved to bottom with dark background */}
-      <section className="py-24 w-full text-white bg-zinc-900">
+      <section className="py-24 w-full text-white bg-neutral-900/60">
         <div className="container px-4 mx-auto max-w-4xl text-center">
           {/* Narrower container just for the headline */}
           <div className="mx-auto max-w-3xl">

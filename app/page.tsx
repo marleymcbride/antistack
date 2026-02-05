@@ -396,7 +396,7 @@ export default function Home() {
         </div>
       </section>
       {/* Black Sections Container - Critical for no gaps */}
-      <div className="w-full bg-zinc-900">
+      <div className="w-full bg-neutral-900/60">
         {/* Step 2 Header - Black Bar */}
         <section className="w-full border-t border-black">
           <div className="pt-10 text-center">
@@ -408,17 +408,7 @@ export default function Home() {
 
         {/* Email Signup Section */}
         <section className="pt-8 pb-16 w-full text-white">
-          <div className="container px-4 mx-auto max-w-4xl text-center">
-            {/* Main CTA Headline */}
-            <h2 className="mx-0 mb-0 text-3xl font-bold text-center md:text-5xl lg:text-5xl">
-              3 Weeks to Jumping Out Of Bed
-              </h2>
-
-            {/* Sub-eyebrow */}
-            <p className="mx-2 mt-5 mb-6 text-center text-2x l md:mb-0 lg:mb-0 lg:mt-6 md:mt-6 md:text-2xl lg:text-3xl">
-              Join 742+ other elite performers getting:
-            </p>
-
+          <div className="container px-4 mx-auto max-w-4xl">
             <EmailSignupWithoutTestimonials />
           </div>
         </section>
@@ -431,7 +421,7 @@ export default function Home() {
       <SystemUnlocks />
 
       {/* Cost question and email form */}
-      <section className="pt-8 pb-16 w-full text-white bg-zinc-900">
+      <section className="pt-8 pb-16 w-full text-white bg-neutral-900/60">
         <div className="container px-4 mx-auto max-w-4xl text-center">
           <h3 className="mt-2 mb-8 text-2xl font-normal leading-snug lg:text-4xl md:text-4xl">
             How much is waking up with no energy every morning costing you?
@@ -445,7 +435,7 @@ export default function Home() {
       <TestimonialSection />
 
       {/* Ready to go faster - Moved to bottom with dark background */}
-      <section className="py-24 w-full text-white bg-zinc-900">
+      <section className="py-24 w-full text-white bg-neutral-900/60">
         <div className="container px-4 mx-auto max-w-4xl text-center">
           {/* Narrower container just for the headline */}
           <div className="mx-auto max-w-3xl">

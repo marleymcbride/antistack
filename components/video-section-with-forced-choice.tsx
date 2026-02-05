@@ -345,7 +345,7 @@ export default function VideoSectionWithForcedChoice({
       {title ? (
         // Original standalone layout with container - OPTIMIZED SIZE for ATF
         <div className="relative mx-auto w-full max-w-4xl">
-          <div className="overflow-hidden relative rounded-lg aspect-video bg-zinc-900">
+          <div className="overflow-hidden relative rounded-lg aspect-video bg-neutral-900/60">
             {!isVideoLoaded ? (
               /* Video Thumbnail/Play Button */
               <div
@@ -404,7 +404,7 @@ export default function VideoSectionWithForcedChoice({
       ) : (
         // Embedded layout - OPTIMIZED SIZE to match main page ATF requirements
         <div className="relative mx-auto w-full max-w-4xl">
-          <div className="overflow-hidden relative rounded-lg aspect-video bg-zinc-900">
+          <div className="overflow-hidden relative rounded-lg aspect-video bg-neutral-900/60">
             {!isVideoLoaded ? (
               /* Video Thumbnail/Play Button */
               <div

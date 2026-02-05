@@ -159,7 +159,7 @@ export default function VideoForcedChoiceTest() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-900 py-12 px-4">
+    <div className="min-h-screen bg-neutral-900/60 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-black text-white text-center mb-2">
           Limitless Copy Variations - A/B Testing

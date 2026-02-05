@@ -11,7 +11,7 @@ export default function SystemUnlocks() {
               A 3-4 minute daily lesson over the next 21 days:
             </p>
 
-        <div className="p-4 pl-5 mx-4 mb-20 max-w-full rounded-lg md:mx-4 lg:mx-4 bg-zinc-900/70 md:pl-10 lg:pl-10">
+        <div className="p-4 pl-5 mx-4 mb-20 max-w-full rounded-lg md:mx-4 lg:mx-4 bg-neutral-900/60 md:pl-10 lg:pl-10">
           <ul className="py-6 space-y-6">
             <li className="flex flex-col">
               <div className="flex items-start mb-1">
@@ -60,7 +60,7 @@ export default function SystemUnlocks() {
 
       {/* Slanted divider - FULL WIDTH */}
       <div className="relative w-full h-19 md:h-20 lg:h-20 bg-zinc-800">
-        <div className="absolute bottom-0 left-0 w-full h-20 md:h-20 lg:h-20 bg-zinc-900 slanted-divider"></div>
+        <div className="absolute bottom-0 left-0 w-full h-20 bg-neutral-950/85 md:h-20 lg:h-20 slanted-divider"></div>
       </div>
     </section>
   );

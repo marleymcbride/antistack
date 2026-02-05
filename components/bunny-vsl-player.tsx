@@ -263,7 +263,7 @@ export default function BunnyVSLPlayer({
       )}
 
       <div className={`relative mx-auto w-full max-w-4xl ${className}`}>
-        <div className="overflow-hidden relative rounded-lg aspect-video bg-zinc-900">
+        <div className="overflow-hidden relative rounded-lg aspect-video bg-neutral-900/60">
           {/* Always show Bunny.net Video Player */}
           <div
             className={`relative w-full h-full ${!isVideoLoaded ? 'cursor-pointer' : ''}`}
