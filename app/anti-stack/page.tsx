@@ -373,7 +373,7 @@ export default function AntiStackPage() {
 
           <h2 className="heading-mobile text-lg md:text-xl lg:text-xl xl:text-xl font-medium tracking-tight text-black text-center mt-8 mb-8 px-4 sm:px-4 md:px-4 max-w-[90%] sm:max-w-[85%] md:max-w-[60%] mx-auto leading-relaxed">
             Watch the video to learn the exact method I used to completely cure my chronic tiredness WITHOUT a single cup of coffee for 472 days, 0 expensive supplements stacks, or training more than twice per week:
-          </h2:
+          </h2>
 
 
 
