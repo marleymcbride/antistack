@@ -232,7 +232,7 @@ export default function AntiStackPage() {
       }
 
       // Submit to N8N webhook with dual-endpoint fallback
-      const { submitToN8nWebhook } = await import('../lib/n8n-webhook-client');
+      const { submitToN8nWebhook } = await import('@/lib/n8n-webhook-client');
 
       await submitToN8nWebhook(
         email,
