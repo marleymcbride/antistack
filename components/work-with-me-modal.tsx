@@ -154,7 +154,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
 
         {/* Header */}
         <div className="mb-6 text-center">
-          <div id="modal-title" className="mb-2 text-2xl font-medium text-white"><strong className="text-red-600">Step 1:</strong> Enter your email</div>
+          <div id="modal-title" className="mb-2 text-2xl font-medium text-white"><strong className="text-red-600">STEP 1:</strong> Enter your email below</div>
         </div>
 
         {/* Form */}
@@ -201,7 +201,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
             aria-live="polite"
             aria-busy={isSubmitting}
           >
-            {isSubmitting ? 'Processing...' : 'Continue'}
+            {isSubmitting ? 'Processing...' : 'Show me how it works'}
           </Button>
         </form>
 
