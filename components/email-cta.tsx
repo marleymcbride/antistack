@@ -151,7 +151,10 @@ export default function EmailCTA() {
 
       } catch (error) {
         console.error('❌ WORK WITH ME - N8N webhook submission failed:', error);
-        alert('There was an error. Please try again.');
+        setSubmitResult({
+          success: false,
+          message: 'There was an error. Please try again.'
+        });
       } finally {
         setIsSubmitting(false);
       }
