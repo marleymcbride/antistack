@@ -154,7 +154,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
 
         {/* Header */}
         <div className="mb-6 text-center">
-          <h2 id="modal-title" className="mb-2 text-2xl font-bold text-white"><span className="text-red-500">Step 1:</span> Enter your email</h2>
+          <h2 id="modal-title" className="mb-2 text-2xl font-bold text-white"><span style={{ color: '#851910' }}>Step 1:</span> Enter your email</h2>
         </div>
 
         {/* Form */}
