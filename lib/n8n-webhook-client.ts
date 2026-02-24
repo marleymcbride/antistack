@@ -246,3 +246,49 @@ export function getWebhookErrorMessage(error: WebhookError): string {
   }
   return 'An error occurred. Please try again later.';
 }
+
+/**
+ * Fire-and-forget webhook for 3weeks email capture
+ * Sends lead tracking data to n8n without blocking the user experience
+ * @param email - User's email address
+ */
+export function fire3weeksEmailCaptureWebhook(email: string): void {
+  const payload = {
+    email,
+    source: '3weeks-email-capture',
+    timestamp: new Date().toISOString()
+  };
+
+  // Fire and forget - don't await, don't block
+  fetch('https://n8n.marleymcbride.co/webhook/3weeks-email-capture', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => {
+    // Silently fail - don't break user experience
+    console.error('Lead capture webhook failed:', err);
+  });
+}
+
+/**
+ * Fire-and-forget webhook for Work With Me leads
+ * Sends lead tracking data to n8n without blocking the user experience
+ * @param email - User's email address
+ */
+export function fireWorkWithMeWebhook(email: string): void {
+  const payload = {
+    email,
+    source: 'work-with-me-3weeks',
+    timestamp: new Date().toISOString()
+  };
+
+  // Fire and forget - don't await, don't block
+  fetch('https://n8n.marleymcbride.co/webhook/antistack-workwithme-leads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => {
+    // Silently fail - don't break user experience
+    console.error('Work With Me webhook failed:', err);
+  });
+}
