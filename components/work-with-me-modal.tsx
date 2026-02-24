@@ -8,6 +8,10 @@ import { Input } from './ui/input';
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
+interface FormData {
+  email: string;
+}
+
 interface WorkWithMeModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -26,7 +30,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm<FormData>();
 
   useEffect(() => {
     setMounted(true);
@@ -68,20 +72,11 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  const onSubmit = async (data: any) => {
-    console.log('📧 WORK WITH ME MODAL - Form submission started:', data);
-
-    // Validate email manually
-    if (!emailRegex.test(data.email)) {
-      console.log('❌ WORK WITH ME MODAL - Email validation failed:', data.email);
-      setSubmitResult({
-        success: false,
-        message: 'Please enter a valid email address',
-      });
-      return;
+  const onSubmit = async (data: FormData) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📧 WORK WITH ME MODAL - Form submission started:', data);
     }
 
-    console.log('✅ WORK WITH ME MODAL - Email validation passed');
     setIsSubmitting(true);
     setSubmitResult(null);
 
@@ -106,8 +101,10 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
         throw new Error('Failed to submit email');
       }
 
-      console.log('🎉 WORK WITH ME MODAL - N8N webhook submission successful!');
-      console.log('🔄 WORK WITH ME MODAL - Opening limitless-life.co in new tab');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🎉 WORK WITH ME MODAL - N8N webhook submission successful!');
+        console.log('🔄 WORK WITH ME MODAL - Opening limitless-life.co in new tab');
+      }
 
       // Open limitless-life.co in new tab
       window.open('https://limitless-life.co', '_blank');
@@ -115,7 +112,9 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
       // Close modal
       onClose();
     } catch (error) {
-      console.error('❌ WORK WITH ME MODAL - N8N webhook submission failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('❌ WORK WITH ME MODAL - N8N webhook submission failed:', error);
+      }
       setSubmitResult({
         success: false,
         message: 'There was an error. Please try again.',
@@ -133,10 +132,14 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
       onClick={onClose}
+      role="presentation"
     >
       <div
         className="w-full max-w-md bg-zinc-800 rounded-xl shadow-2xl p-6 relative"
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
       >
         {/* Close button */}
         <button
@@ -151,7 +154,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
 
         {/* Header */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-white mb-2">Work With Me</h2>
+          <h2 id="modal-title" className="text-2xl font-bold text-white mb-2">Work With Me</h2>
           <p className="text-zinc-400 text-sm">Enter your email to continue</p>
         </div>
 
@@ -187,7 +190,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
             />
             {errors.email && (
               <p className="mt-1 text-xs text-red-400">
-                {errors.email.message as string}
+                {errors.email.message}
               </p>
             )}
           </div>
@@ -196,6 +199,8 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
             type="submit"
             className="w-full h-12 text-base font-bold text-white bg-red-700 rounded hover:bg-red-800"
             disabled={isSubmitting}
+            aria-live="polite"
+            aria-busy={isSubmitting}
           >
             {isSubmitting ? 'Processing...' : 'Continue'}
           </Button>
@@ -203,8 +208,11 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
 
         {/* Trust indicator */}
         <div className="text-center mt-6 pt-4 border-t border-zinc-700">
-          <p className="text-xs text-zinc-500 uppercase tracking-wide">
-            🔒 Secure
+          <p className="text-xs text-zinc-500 uppercase tracking-wide flex items-center justify-center gap-1">
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+            </svg>
+            Secure
           </p>
         </div>
       </div>
