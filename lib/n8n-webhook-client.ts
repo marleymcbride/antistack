@@ -291,19 +291,31 @@ export async function fireWorkWithMeWebhook(email: string): Promise<void> {
     timestamp: new Date().toISOString()
   };
 
-  // Send webhook and wait for response
+  // Send webhook and wait for response (with timeout)
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
     const response = await fetch('https://limitless-life.co/api/webhooks/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error('Work With Me webhook failed:', response.status, response.statusText);
+    } else {
+      console.log('✅ Work With Me webhook succeeded');
     }
   } catch (err) {
     // Log but don't throw - we still want to open the page
-    console.error('Work With Me webhook error:', err);
+    if (err instanceof Error && err.name === 'AbortError') {
+      console.error('Work With Me webhook timeout (5s) - proceeding anyway');
+    } else {
+      console.error('Work With Me webhook error:', err);
+    }
   }
 }
