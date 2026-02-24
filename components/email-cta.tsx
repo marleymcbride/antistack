@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import WorkWithMeModal from './work-with-me-modal';
 
 // Define the schema manually instead of using zod
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -22,6 +23,7 @@ export default function EmailCTA() {
     success: boolean;
     message: string;
   } | null>(null);
+  const [isWorkWithMeModalOpen, setIsWorkWithMeModalOpen] = React.useState(false);
 
   // Use react-hook-form without zod resolver
   const {
@@ -29,6 +31,7 @@ export default function EmailCTA() {
     handleSubmit,
     formState: { errors },
     reset,
+    getValues,
   } = useForm();
 
   const onSubmit = async (data: any, redirectUrl: string = '/signup-watch-video') => {
@@ -114,45 +117,47 @@ export default function EmailCTA() {
   };
 
   const handleWorkWithMe = async () => {
-    // Get email from form
-    const emailValue = (document.querySelector('input[type="email"]') as HTMLInputElement)?.value;
+    // Get email from form using react-hook-form
+    const emailValue = (getValues().email as string)?.trim();
 
-    if (!emailValue || !emailRegex.test(emailValue)) {
-      alert('Please enter your email address first');
-      return;
-    }
+    // Check if email exists and is valid
+    if (emailValue && emailRegex.test(emailValue)) {
+      // Email exists - submit directly
+      setIsSubmitting(true);
 
-    setIsSubmitting(true);
+      try {
+        // Submit to N8N webhook for work-with-me leads
+        const response = await fetch('https://n8n.marleymcbride.co/webhook-test/antistack-workwithme-leads', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: emailValue,
+            source: 'work-with-me-leads',
+            timestamp: new Date().toISOString()
+          }),
+        });
 
-    try {
-      // Submit to NEW N8N webhook for work-with-me leads
-      const response = await fetch('https://n8n.marleymcbride.co/webhook-test/antistack-workwithme-leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: emailValue,
-          source: 'work-with-me-leads',
-          timestamp: new Date().toISOString()
-        }),
-      });
+        if (!response.ok) {
+          throw new Error('Failed to submit email');
+        }
 
-      if (!response.ok) {
-        throw new Error('Failed to submit email');
+        console.log('🎉 WORK WITH ME - N8N webhook submission successful!');
+        console.log('🔄 WORK WITH ME - Opening limitless-life.co in new tab');
+
+        // Open limitless-life.co in new tab
+        window.open('https://limitless-life.co', '_blank');
+
+      } catch (error) {
+        console.error('❌ WORK WITH ME - N8N webhook submission failed:', error);
+        alert('There was an error. Please try again.');
+      } finally {
+        setIsSubmitting(false);
       }
-
-      console.log('🎉 WORK WITH ME - N8N webhook submission successful!');
-      console.log('🔄 WORK WITH ME - Redirecting to limitless-life.co');
-
-      // Redirect to limitless-life.co
-      window.location.href = 'https://limitless-life.co';
-
-    } catch (error) {
-      console.error('❌ WORK WITH ME - N8N webhook submission failed:', error);
-      alert('There was an error. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      // No email - open modal
+      setIsWorkWithMeModalOpen(true);
     }
   };
 
@@ -261,6 +266,11 @@ export default function EmailCTA() {
           </Button>
         </div>
       </div>
+
+      <WorkWithMeModal
+        isOpen={isWorkWithMeModalOpen}
+        onClose={() => setIsWorkWithMeModalOpen(false)}
+      />
     </>
   );
 }
