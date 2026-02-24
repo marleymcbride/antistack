@@ -261,7 +261,7 @@ export function fire3weeksLeadWebhook(email: string, source: '3weeks-email-captu
   };
 
   // Fire and forget - don't await, don't block
-  fetch('https://limitless-life.co/api/webhooks/leads', {
+  fetch('https://www.limitless-life.co/api/webhooks/leads', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -296,7 +296,7 @@ export async function fireWorkWithMeWebhook(email: string): Promise<void> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
-    const response = await fetch('https://limitless-life.co/api/webhooks/leads', {
+    const response = await fetch('https://www.limitless-life.co/api/webhooks/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
