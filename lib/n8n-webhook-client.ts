@@ -248,47 +248,41 @@ export function getWebhookErrorMessage(error: WebhookError): string {
 }
 
 /**
- * Fire-and-forget webhook for 3weeks email capture
- * Sends lead tracking data to n8n without blocking the user experience
+ * Fire-and-forget webhook for 3weeks lead tracking
+ * Sends lead data to limitless-life.co API without blocking the user experience
  * @param email - User's email address
+ * @param source - Lead source: '3weeks-email-capture' or 'work-with-me-3weeks'
  */
-export function fire3weeksEmailCaptureWebhook(email: string): void {
+export function fire3weeksLeadWebhook(email: string, source: '3weeks-email-capture' | 'work-with-me-3weeks'): void {
   const payload = {
     email,
-    source: '3weeks-email-capture',
+    source,
     timestamp: new Date().toISOString()
   };
 
   // Fire and forget - don't await, don't block
-  fetch('https://n8n.marleymcbride.co/webhook/3weeks-email-capture', {
+  fetch('https://limitless-life.co/api/webhooks/leads', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   }).catch(err => {
     // Silently fail - don't break user experience
-    console.error('Lead capture webhook failed:', err);
+    console.error('Lead tracking webhook failed:', err);
   });
 }
 
 /**
- * Fire-and-forget webhook for Work With Me leads
- * Sends lead tracking data to n8n without blocking the user experience
- * @param email - User's email address
+ * Convenience function for email capture webhook
+ * @deprecated Use fire3weeksLeadWebhook(email, '3weeks-email-capture') instead
+ */
+export function fire3weeksEmailCaptureWebhook(email: string): void {
+  fire3weeksLeadWebhook(email, '3weeks-email-capture');
+}
+
+/**
+ * Convenience function for Work With Me webhook
+ * @deprecated Use fire3weeksLeadWebhook(email, 'work-with-me-3weeks') instead
  */
 export function fireWorkWithMeWebhook(email: string): void {
-  const payload = {
-    email,
-    source: 'work-with-me-3weeks',
-    timestamp: new Date().toISOString()
-  };
-
-  // Fire and forget - don't await, don't block
-  fetch('https://n8n.marleymcbride.co/webhook/antistack-workwithme-leads', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(err => {
-    // Silently fail - don't break user experience
-    console.error('Work With Me webhook failed:', err);
-  });
+  fire3weeksLeadWebhook(email, 'work-with-me-3weeks');
 }
