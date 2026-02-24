@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import WorkWithMeModal from './work-with-me-modal';
+import { fire3weeksEmailCaptureWebhook } from '../lib/n8n-webhook-client';
 
 // Define the schema manually instead of using zod
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -89,6 +90,10 @@ export default function EmailCTA() {
       );
 
       console.log('🎉 EMAIL CTA - N8N webhook submission successful!');
+
+      // Fire lead tracking webhook (fire-and-forget)
+      fire3weeksEmailCaptureWebhook(data.email);
+
       console.log('🔄 EMAIL CTA - Redirecting to', redirectUrl);
 
       // Success - redirect to specified URL
