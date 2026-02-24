@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { createPortal } from 'react-dom';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import { fire3weeksEmailCaptureWebhook, fireWorkWithMeWebhook } from '../lib/n8n-webhook-client';
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
@@ -81,28 +82,12 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
     setSubmitResult(null);
 
     try {
-      // Submit to N8N webhook for work-with-me leads
-      const response = await fetch(
-        'https://n8n.marleymcbride.co/webhook-test/antistack-workwithme-leads',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: data.email,
-            source: 'work-with-me-modal',
-            timestamp: new Date().toISOString(),
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to submit email');
-      }
+      // Fire both webhooks (fire-and-forget)
+      fire3weeksEmailCaptureWebhook(data.email);
+      fireWorkWithMeWebhook(data.email);
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('🎉 WORK WITH ME MODAL - N8N webhook submission successful!');
+        console.log('🎉 WORK WITH ME MODAL - Webhooks fired successfully!');
         console.log('🔄 WORK WITH ME MODAL - Opening limitless-life.co in new tab');
       }
 
@@ -113,7 +98,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
       onClose();
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
-        console.error('❌ WORK WITH ME MODAL - N8N webhook submission failed:', error);
+        console.error('❌ WORK WITH ME MODAL - Error:', error);
       }
       setSubmitResult({
         success: false,
