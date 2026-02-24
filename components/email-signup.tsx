@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import WorkWithMeModal from './work-with-me-modal';
-import { fire3weeksEmailCaptureWebhook } from '../lib/n8n-webhook-client';
+import { fire3weeksEmailCaptureWebhook, fireWorkWithMeWebhook } from '../lib/n8n-webhook-client';
 
 // Email pattern validation
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -140,41 +140,14 @@ export default function EmailSignup() {
     // Check if email exists and is valid
     if (emailValue && emailRegex.test(emailValue)) {
       // Email exists - submit directly
-      setIsSubmitting(true);
+      // Fire Work With Me webhook (fire-and-forget)
+      fireWorkWithMeWebhook(emailValue);
 
-      try {
-        // Submit to N8N webhook for work-with-me leads
-        const response = await fetch('https://n8n.marleymcbride.co/webhook-test/antistack-workwithme-leads', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: emailValue,
-            source: 'work-with-me-leads',
-            timestamp: new Date().toISOString()
-          }),
-        });
+      console.log('🎉 WORK WITH ME - Webhook fired, opening limitless-life.co in new tab');
+      console.log('🔄 WORK WITH ME - Opening limitless-life.co in new tab');
 
-        if (!response.ok) {
-          throw new Error('Failed to submit email');
-        }
-
-        console.log('🎉 WORK WITH ME - N8N webhook submission successful!');
-        console.log('🔄 WORK WITH ME - Opening limitless-life.co in new tab');
-
-        // Open limitless-life.co in new tab
-        window.open('https://limitless-life.co', '_blank');
-
-      } catch (error) {
-        console.error('❌ WORK WITH ME - N8N webhook submission failed:', error);
-        setSubmitResult({
-          success: false,
-          message: 'There was an error. Please try again.'
-        });
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Open limitless-life.co in new tab
+      window.open('https://limitless-life.co', '_blank');
     } else {
       // No email - open modal
       setIsWorkWithMeModalOpen(true);
