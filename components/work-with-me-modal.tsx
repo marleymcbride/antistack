@@ -135,7 +135,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
       role="presentation"
     >
       <div
-        className="w-full max-w-md bg-zinc-800 rounded-xl shadow-2xl p-6 relative"
+        className="relative p-6 py-16 w-full max-w-md rounded-xl shadow-2xl bg-zinc-800"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -144,7 +144,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-zinc-400 hover:text-zinc-200 transition-colors"
+          className="absolute top-3 right-3 transition-colors text-zinc-400 hover:text-zinc-200"
           aria-label="Close"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,13 +153,12 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
         </button>
 
         {/* Header */}
-        <div className="text-center mb-6">
-          <h2 id="modal-title" className="text-2xl font-bold text-white mb-2">Work With Me</h2>
-          <p className="text-zinc-400 text-sm">Enter your email to continue</p>
+        <div className="mb-6 text-center">
+          <h2 id="modal-title" className="mb-2 text-2xl font-bold text-white"><span className="text-red-500">Step 1:</span> Enter your email</h2>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mx-6 space-y-4">
           {submitResult && (
             <div
               className={`p-3 rounded text-sm ${
@@ -207,14 +206,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
         </form>
 
         {/* Trust indicator */}
-        <div className="text-center mt-6 pt-4 border-t border-zinc-700">
-          <p className="text-xs text-zinc-500 uppercase tracking-wide flex items-center justify-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-            </svg>
-            Secure
-          </p>
-        </div>
+   
       </div>
     </div>,
     document.body
