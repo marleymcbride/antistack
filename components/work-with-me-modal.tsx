@@ -82,9 +82,9 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
     setSubmitResult(null);
 
     try {
-      // Fire both webhooks (fire-and-forget)
+      // Fire both webhooks (email capture is fire-and-forget, Work With Me awaits)
       fire3weeksEmailCaptureWebhook(data.email);
-      fireWorkWithMeWebhook(data.email);
+      await fireWorkWithMeWebhook(data.email);
 
       if (process.env.NODE_ENV === 'development') {
         console.log('🎉 WORK WITH ME MODAL - Webhooks fired successfully!');

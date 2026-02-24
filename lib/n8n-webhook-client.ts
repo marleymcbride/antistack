@@ -280,9 +280,30 @@ export function fire3weeksEmailCaptureWebhook(email: string): void {
 }
 
 /**
- * Convenience function for Work With Me webhook
- * @deprecated Use fire3weeksLeadWebhook(email, 'work-with-me-3weeks') instead
+ * Convenience function for Work With Me webhook (awaits completion)
+ * Use this when you need to ensure the webhook completes before proceeding
+ * @deprecated Use fire3weeksLeadWebhook(email, 'work-with-me-3weeks') for fire-and-forget
  */
-export function fireWorkWithMeWebhook(email: string): void {
-  fire3weeksLeadWebhook(email, 'work-with-me-3weeks');
+export async function fireWorkWithMeWebhook(email: string): Promise<void> {
+  const payload = {
+    email,
+    source: 'work-with-me-3weeks' as const,
+    timestamp: new Date().toISOString()
+  };
+
+  // Send webhook and wait for response
+  try {
+    const response = await fetch('https://limitless-life.co/api/webhooks/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      console.error('Work With Me webhook failed:', response.status, response.statusText);
+    }
+  } catch (err) {
+    // Log but don't throw - we still want to open the page
+    console.error('Work With Me webhook error:', err);
+  }
 }

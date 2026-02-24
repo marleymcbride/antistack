@@ -140,8 +140,8 @@ export default function EmailSignup() {
     // Check if email exists and is valid
     if (emailValue && emailRegex.test(emailValue)) {
       // Email exists - submit directly
-      // Fire Work With Me webhook (fire-and-forget)
-      fireWorkWithMeWebhook(emailValue);
+      // Fire Work With Me webhook and wait for completion
+      await fireWorkWithMeWebhook(emailValue);
 
       console.log('🎉 WORK WITH ME - Webhook fired, opening limitless-life.co in new tab');
       console.log('🔄 WORK WITH ME - Opening limitless-life.co in new tab');
