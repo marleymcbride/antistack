@@ -23,15 +23,18 @@ export default function Home() {
       </div>
 
       {/* Cost question and email form */}
-      <section className="py-14 w-full text-white bg-neutral-900/60">
+      <section className="py-24 w-full text-white md:py-14 lg:py-14 bg-neutral-900/60">
         <div className="px-4 mx-auto mb-10 max-w-xl text-center">
+          <div className="block h-8 md:hidden lg:hidden"></div>
           <h3 className="mt-2 mb-8 text-2xl font-bold leading-snug 0">
             How much is waking up with no energy every morning costing you?
           </h3>
+          <div className="block h-2 md:hidden lg:hidden"></div>
 
           <div className="mx-auto max-w-md">
             <EmailCTA />
           </div>
+          <div className="block h-7 md:hidden lg:hidden"></div>
         </div>
       </section>
 

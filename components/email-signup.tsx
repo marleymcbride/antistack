@@ -175,13 +175,13 @@ export default function EmailSignup() {
   return (
     <>
       {/* Two Column Layout - 60/40 Split - Everything Left, Image Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr] pb-16 gap-8 md:gap-12 lg:gap-16 items-start mt-8 lg:mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-[60fr_40fr] pb-3 md:pb-16 lg:pb-16 gap-8 md:gap-20 lg:gap-16 items-start mt-8 lg:mb-8">
         {/* Left Column - All Content */}
-        <div className="pt-0 space-y-5">
+        <div className="pt-0 pr-0 -ml-0 space-y-5 lg:-ml-4 md:-ml-4 md:pr-4 lg:pr-4">
           {/* Main CTA Headline */}
-          <h2 className="text-xl font-thin leading-none text-left lg:text-left text-[50px] md:text-[44px] lg:text-[50px] ">
+          <div className="-ml-4 pl-3 -mr-4 md:-ml-4 md:pl-0 md:-mr-0 lg:-ml-4 lg:pl-0 lg:-mr-0 font-medium leading-tight md:leading-none lg:leading-none text-left lg:text-left text-[50px] md:text-[44px] lg:text-[50px] ">
             3 Weeks to Jumping Out Of Bed
-          </h2>
+          </div>
 
           {/* Sub-eyebrow - Desktop only COMMENTED OUT NOT IN USE
           <p className="hidden text-base text-left lg:block lg:text-base md:text-base lg:text-lg">
@@ -189,12 +189,13 @@ export default function EmailSignup() {
           </p> */}
 
           {/* Mobile-only subheading */}
-          <p className="block py-3 text-lg font-normal leading-relaxed text-left lg:hidden text-zinc-300">
-            Master the simple lifestyle-first health system to get boundless energy every morning in 21 days with the Anti-Stack system
+          <p className="block py-3 pl-1 -mr-3 text-lg font-normal leading-relaxed text-left lg:hidden text-zinc-300">
+            Master the simple lifestyle-first health system to get boundless
+            energy every morning in 21 days with the Anti-Stack system
           </p>
 
           {/* Benefits Box - Desktop only (show on left column) */}
-          <div className="hidden px-6 py-10 mx-5 -ml-0 rounded-lg lg:block mtext-left left bg-zinc-800/70">
+          <div className="hidden px-6 py-10 mx-5 -ml-0 -ml-4 rounded-lg lg:block mtext-left left bg-zinc-800/70">
             <h4 className="mb-4 text-sm font-semibold leading-relaxed md:text-sm lg:text-[19px] lg:mb-6">
               A daily 3-minute read straight to your inbox
             </h4>
@@ -285,15 +286,18 @@ export default function EmailSignup() {
 
           {/* Quick Note on getting the email - Desktop only */}
           <div className="hidden text-center lg:block lg:mx-auto lg:-ml-4">
-            <p className="text-sm text-zinc-400 md:text-base">
-              FREE for the first 100. Drop your email and I&apos;ll send
-              it over:
+            <p className="-ml-4 text-sm text-zinc-400 md:text-base">
+              FREE for the first 100. Drop your email and I&apos;ll send it
+              over:
             </p>
           </div>
 
           {/* Email Form */}
           <div className="mx-auto max-w-[290px] lg:mx-auto lg:max-w-[96%] lg:w-96">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="pr-0 -ml-0 space-y-3 md:pr-6 md:-ml-3 lg:pr-6 lg:-ml-3"
+            >
               <Input
                 {...register("email", {
                   required: "Email is required",
@@ -327,25 +331,25 @@ export default function EmailSignup() {
           {/* Quick Note on getting the email - Mobile only, UNDERNEATH form */}
           <div className="block text-center lg:hidden">
             <p className="text-sm text-zinc-400">
-              FREE for the first 100. Drop your email and I&apos;ll send
-              it over:
+              FREE for the first 100. Drop your email and I&apos;ll send it
+              over:
             </p>
           </div>
         </div>
 
         {/* Right Column - Book Mockup Image */}
-        <div className="flex flex-col justify-center items-center pt-0 space-y-3">
+        <div className="flex flex-col justify-center items-center pt-0 pl-4 -mr-4 -ml-0 space-y-3 md:-ml-0 lg:-ml-0">
           <img
             src="/images/3WTJOOB - Book mockup.jpg"
             alt="3 Weeks to Jumping Out Of Bed - Book Mockup"
-            className="object-contain w-[112%] max-w-md h-auto rounded-lg shadow-2xl"
+            className="object-contain w-[112%] max-w-md h-auto scale-[0.88] md:scale-[1] lg:scale-[1] rounded-lg shadow-2xl mb-6 -ml-6 md:-ml-0 lg:-ml-0"
           />
 
           {/* Benefits Box - Mobile only (under image) */}
-          <div className="block px-5 py-12 -mx-4 rounded-lg lg:hidden bg-zinc-800/70">
-            <h4 className="mx-auto mb-4 ml-6 text-lg font-semibold leading-relaxed">
+          <div className="block px-8 py-12 pl-4 mr-2 -mr-2 -ml-5 rounded-lg md:-ml-0 lg:-ml-0 lg:hidden bg-zinc-800/70">
+            <div className="mx-auto mb-4 ml-6 text-2xl font-semibold leading-relaxed mb-">
               A daily 3-minute read straight to your inbox
-            </h4>
+            </div>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="flex-shrink-0 self-center mr-[10px] text-left text-red-500">
@@ -365,7 +369,7 @@ export default function EmailSignup() {
                     />
                   </svg>
                 </span>
-                <span className="text-sm leading-relaxed">
+                <span className="mt-2 text-lg leading-relaxed">
                   The simple 3-step morning flow to wake up feeling energized
                   without caffeine
                 </span>
@@ -388,7 +392,7 @@ export default function EmailSignup() {
                     />
                   </svg>
                 </span>
-                <span className="text-sm leading-relaxed">
+                <span className="mt-2 text-lg leading-relaxed">
                   The EXACT protocol to jump out of bed in only 3 weeks
                 </span>
               </li>
@@ -410,7 +414,7 @@ export default function EmailSignup() {
                     />
                   </svg>
                 </span>
-                <span className="text-sm leading-relaxed">
+                <span className="mt-2 text-lg leading-relaxed">
                   The full blueprint to reset your hormones and triple your
                   focus without sunning your balls, biohacks or &apos;T
                   boosters&apos;
@@ -422,7 +426,7 @@ export default function EmailSignup() {
       </div>
 
       {/* Personal Note - Outside container */}
-      <p className="mb-4 text-xs text-center text-zinc-400">
+      <p className="hidden mb-4 text-xs text-center md:block lg:block text-zinc-400">
         (I reply to every email personally. No bots or VA. Just yours truly.)
       </p>
     </>
