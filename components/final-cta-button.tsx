@@ -27,12 +27,12 @@ export default function FinalCTAButton() {
         console.log('🎉 FINAL CTA - Webhook fired, opening limitless-life.co in new tab');
 
         // Open limitless-life.co in new tab
-        window.open('https://limitless-life.co', '_blank');
+        window.open('https://limitless-life.co?3w=squeeze-page_work-with-me', '_blank');
 
       } catch (error) {
         console.error('❌ FINAL CTA - Webhook error:', error);
         // Still open the page even if webhook fails
-        window.open('https://limitless-life.co', '_blank');
+        window.open('https://limitless-life.co?3w=squeeze-page_work-with-me', '_blank');
       } finally {
         setIsSubmitting(false);
       }

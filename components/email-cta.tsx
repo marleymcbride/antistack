@@ -135,7 +135,7 @@ export default function EmailCTA() {
       console.log('🔄 WORK WITH ME - Opening limitless-life.co in new tab');
 
       // Open limitless-life.co in new tab
-      window.open('https://limitless-life.co', '_blank');
+      window.open('https://limitless-life.co?3w=squeeze-page_work-with-me', '_blank');
     } else {
       // No email - open modal
       setIsWorkWithMeModalOpen(true);

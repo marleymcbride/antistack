@@ -92,7 +92,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
       }
 
       // Open limitless-life.co in new tab
-      window.open('https://limitless-life.co', '_blank');
+      window.open('https://limitless-life.co?3w=squeeze-page_work-with-me', '_blank');
 
       // Close modal
       onClose();
@@ -166,7 +166,7 @@ export default function WorkWithMeModal({ isOpen, onClose }: WorkWithMeModalProp
                 },
               })}
               type="email"
-              placeholder="Your Email Address..."
+              placeholder="your email address..."
               className={`w-full h-12 bg-zinc-700 border-zinc-600 text-white placeholder-zinc-400 ${
                 errors.email ? 'border-red-500' : ''
               }`}
