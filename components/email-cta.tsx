@@ -35,7 +35,7 @@ export default function EmailCTA() {
     getValues,
   } = useForm();
 
-  const onSubmit = async (data: any, redirectUrl: string = '/signup-watch-video') => {
+  const onSubmit = async (data: any) => {
     console.log('📧 EMAIL CTA - Form submission started:', data);
 
     // Validate email manually
@@ -94,14 +94,10 @@ export default function EmailCTA() {
       // Fire lead tracking webhook (fire-and-forget)
       fire3weeksEmailCaptureWebhook(data.email);
 
-      console.log('🔄 EMAIL CTA - Redirecting to', redirectUrl);
+      console.log('🔄 EMAIL CTA - Redirecting to signup-watch-video');
 
-      // Success - redirect to specified URL
-      if (redirectUrl.startsWith('http')) {
-        window.location.href = redirectUrl;
-      } else {
-        router.push(redirectUrl);
-      }
+      // Success - redirect
+      router.push('/signup-watch-video');
       return;
 
     } catch (error) {

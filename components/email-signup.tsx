@@ -35,10 +35,7 @@ export default function EmailSignup() {
     getValues,
   } = useForm();
 
-  const onSubmit = async (
-    data: any,
-    redirectUrl: string = "/signup-watch-video",
-  ) => {
+  const onSubmit = async (data: any) => {
     console.log("📧 EMAIL SIGNUP - Form submission started:", data);
 
     // Validate email manually
@@ -99,14 +96,10 @@ export default function EmailSignup() {
       // Fire lead tracking webhook (fire-and-forget)
       fire3weeksEmailCaptureWebhook(data.email);
 
-      console.log("🔄 EMAIL SIGNUP - Redirecting to", redirectUrl);
+      console.log("🔄 EMAIL SIGNUP - Redirecting to signup-watch-video");
 
-      // Success - redirect to specified URL
-      if (redirectUrl.startsWith("http")) {
-        window.location.href = redirectUrl;
-      } else {
-        router.push(redirectUrl);
-      }
+      // Success - redirect
+      router.push("/signup-watch-video");
       return;
     } catch (error) {
       console.error("❌ EMAIL SIGNUP - N8N webhook submission failed:", error);
